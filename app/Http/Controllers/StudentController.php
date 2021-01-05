@@ -10,9 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
+    public function try()
+    {
+
+        echo "work";
+    }
 
     public function addStudentData(Request $request)
     {
+
         $student=new Personaldatastudent();
         $student->englishName=$request->englishName;
         $student->arabicName=$request->arabicName;
@@ -40,12 +46,6 @@ class StudentController extends Controller
         Mail::to($user->email)->send(new StudentMail( $user_id,$user_name,$name));
         echo "send to ".$user->englishName . " ". "Done!";
 
-       /* $user=Personaldatastudent::latest()->first();
-        $user=Personaldatastudent::latest()->first();
-        $name="https://forms.gle/xQgRdk2Ra89d6foPA";
-
-         Mail::to($user->email)->send(new StudentMail($user,$name));
-         return "send Done!";*/
 
         return response()->json([
             $student
