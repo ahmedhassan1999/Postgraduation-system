@@ -14,7 +14,6 @@ class Personaldatastudent extends Model
     protected $primaryKey  = 'idS';
     public function register()
     {
-
         return $this->hasMany(Registration::class,'idSF','idS');
     }
 }
