@@ -10,7 +10,7 @@ class Personaldatastudent extends Model
 {
     use HasFactory;
     protected $table='personaldatastudents';
-    protected $guarded=[];
+    protected $guarded=['idS'];
     protected $primaryKey  = 'idS';
     public function register()
     {

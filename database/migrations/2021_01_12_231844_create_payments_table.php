@@ -16,10 +16,10 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('idPayment');
             $table->integer('receiptNumber')->unsigned()->nullable();
-            $table->double('amountPaid')->nullable();
+            $table->double('amountPaid');
             $table->string('URLImage', 400)->nullable();
-            $table->date('paymentDate')->nullable();
-            $table->date('forYear')->nullable();
+            $table->date('paymentDate');
+            $table->date('forYear');
             $table->timestamps();
         });
     }

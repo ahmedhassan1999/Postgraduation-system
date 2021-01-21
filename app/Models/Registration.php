@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Registration extends Model
 {
     use HasFactory;
-    protected $table=['registrations'];
-    protected $guarded=[];
+    protected $table='registrations';
+    protected $guarded=['idRegistration'];
     protected $primaryKey  ='idRegistration';
     public function personal()
     {

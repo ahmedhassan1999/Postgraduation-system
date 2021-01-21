@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->bigIncrements('idCourse');
             $table->string('arabicName', 50)->nullable();
             $table->string('englishName', 50)->nullable();
-            $table->string('courseCode', 15)->nullable();
+            $table->string('courseCode', 15);
             $table->double('maxGrade')->nullable();
             $table->integer('creditHours')->unsigned()->nullable();
             $table->timestamps();
