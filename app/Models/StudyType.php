@@ -11,4 +11,9 @@ class StudyType extends Model
     protected $table = 'studytypes';
     protected $guarded = ['idStudyType']; //for the fillable
     protected $primaryKey = 'idStudyType';
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::calss, 'idStudyTypeF', 'idStudyType');
+    }
 }
