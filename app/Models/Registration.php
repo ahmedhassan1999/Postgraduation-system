@@ -23,4 +23,10 @@ class Registration extends Model
     {
         return $this->hasMany(Excuse::class, 'idRegistrationF', 'idRegistration');
     }
+
+    //every registration may have one payment or more!
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'idRegistrationF', 'idRegistration');
+    }
 }
