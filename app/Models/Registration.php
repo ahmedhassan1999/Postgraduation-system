@@ -29,4 +29,10 @@ class Registration extends Model
     {
         return $this->hasMany(Payment::class, 'idRegistrationF', 'idRegistration');
     }
+
+    //every registration may have one remark(state) or more!
+    public function states()
+    {
+        return $this->hasMany(State::class, 'idRegistrationF', 'idRegistration');
+    }
 }
