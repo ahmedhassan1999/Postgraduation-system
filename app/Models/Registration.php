@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Personaldatastudent;
 use App\Models\Excuse;
+use App\Models\Course;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,5 +35,11 @@ class Registration extends Model
     public function states()
     {
         return $this->hasMany(State::class, 'idRegistrationF', 'idRegistration');
+    }
+
+    //many to many relationship with courses model!
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'results', 'idRegistrationF', 'idCourseF');
     }
 }
