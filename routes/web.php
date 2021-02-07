@@ -1,6 +1,7 @@
 <?php
-
+use App\Models\Personaldatastudent;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/student', function(){
+    $student = Personaldatastudent::findOrFail(1);
+   // return $student->register()->englishTitle;
+    // $res=$student->register()->englishTitle;
+
+   /* $student=$student->register();
+    return $student;*/
+
+    foreach($student->register as $re){
+        echo $re->arabicTitle . "<br>";
+    }
+});
+

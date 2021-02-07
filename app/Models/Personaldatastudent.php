@@ -17,4 +17,9 @@ class Personaldatastudent extends Model
 
         return $this->hasMany(Registration::class,'idSF','idS');
     }
+    public function prevstudies()
+    {
+
+        return $this->hasOne(Previousstudie::class,'idSF','idS');
+    }
 }
