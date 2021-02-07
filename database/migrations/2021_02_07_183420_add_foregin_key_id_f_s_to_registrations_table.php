@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNew3ToRegistrationsTable extends Migration
+class AddForeginKeyIdFSToRegistrationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddNew3ToRegistrationsTable extends Migration
     public function up()
     {
         Schema::table('registrations', function (Blueprint $table) {
-            $table->unsignedBigInteger('idSF')->nullable();
+            $table->foreign('idSF')->references('idS')->on('personaldatastudents')->onDelete('cascade');
         });
     }
 

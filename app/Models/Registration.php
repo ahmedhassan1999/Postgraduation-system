@@ -9,11 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 class Registration extends Model
 {
     use HasFactory;
-    protected $table=['registrations'];
+    protected $table='registrations';
     protected $guarded=[];
     protected $primaryKey  ='idRegistration';
     public function personal()
     {
         return $this->belongsTo(Personaldatastudent::class,'idSF','idRegistration');
     }
+    public function supervisors()
+    {
+        return $this->belongsToMany(Supervisor::class,'registerationsupervisors','idRegistrationF','idSupervisorF');
+    }
+
 }
