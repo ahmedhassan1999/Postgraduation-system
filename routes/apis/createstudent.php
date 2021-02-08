@@ -19,5 +19,5 @@ use App\Http\Controllers\SendController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('addStudentData',[\App\Http\Controllers\StudentController::class,'addStudentData']);
-
+Route::post('addStudentData', [\App\Http\Controllers\StudentController::class, 'addStudentData']);
+Route::get('try', [\App\Http\Controllers\StudentController::class, 'try']);
