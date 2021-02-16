@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Registration;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+//testing the Registrations & courses relationship (many to many)!
+//get the courses of a specific registration!
+Route::get('/courses', function(){
+    $reg = Registration::findOrFail(1);
+
+    foreach($reg->courses as $course){
+        echo $course->englishName . "<br>";
+    }
 });
