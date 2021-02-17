@@ -17,7 +17,6 @@ class CreatePersonaldatastudentsTable extends Migration
             $table->bigIncrements('idS');
             $table->string('englishName', 50)->nullable();
             $table->string('arabicName', 50);
-            $table->string('study_type', 50);
             $table->string('birthdateSource', 20)->nullable();
             $table->date('birthdate')->nullable();
             $table->string('jobArabic', 50)->nullable();
