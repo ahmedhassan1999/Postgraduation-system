@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-class AddForeignKeyForRegistartionsTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,11 @@ class AddForeignKeyForRegistartionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('registrations', function (Blueprint $table) {
-            $table->foreign('idSF')->references('idS')->on('personaldatastudents')->onDelete('cascade');
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id('idDept');
+            $table->string('arabicName', 50);
+            $table->string('englishName', 50)->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddForeignKeyForRegistartionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('registrations', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('departments');
     }
 }

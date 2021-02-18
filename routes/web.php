@@ -3,6 +3,8 @@ use App\Models\Personaldatastudent;
 use Illuminate\Support\Facades\Route;
 
 
+use App\Models\Registration;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/student', function(){
     $student = Personaldatastudent::findOrFail(1);
    // return $student->register()->englishTitle;
@@ -27,6 +30,18 @@ Route::get('/student', function(){
 
     foreach($student->register as $re){
         echo $re->arabicTitle . "<br>";
+    }
+});
+
+
+
+//testing the Registrations & courses relationship (many to many)!
+//get the courses of a specific registration!
+Route::get('/courses', function(){
+    $reg = Registration::findOrFail(1);
+
+    foreach($reg->courses as $course){
+        echo $course->englishName . "<br>";
     }
 });
 

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-class AddForeignKeyForRegistartionsTable extends Migration
+class AddForeignKeyForCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,8 @@ class AddForeignKeyForRegistartionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('registrations', function (Blueprint $table) {
-            $table->foreign('idSF')->references('idS')->on('personaldatastudents')->onDelete('cascade');
+        Schema::table('courses', function (Blueprint $table) {
+            $table->foreign('idStudyTypeF')->references('idStudyType')->on('studytypes')->onDelete('cascade');
         });
     }
 
@@ -26,7 +25,7 @@ class AddForeignKeyForRegistartionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('registrations', function (Blueprint $table) {
+        Schema::table('courses', function (Blueprint $table) {
             //
         });
     }
