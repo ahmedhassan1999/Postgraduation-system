@@ -28,7 +28,7 @@ class StudentController extends Controller
         $user = DB::table('personaldatastudents')->orderBy('idS', 'desc')->first();
         $user_id = $user->idS;
 
-        $user_name = $user->arabicName
+        $user_name = $user->arabicName;
         $name = " ";
         if ($request->study_type == "دكتوراه الفلسفة في العلوم")
             $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMURFUTNSTk5UVlJPOEg5MDNIMEhVU0o1Wi4u";
