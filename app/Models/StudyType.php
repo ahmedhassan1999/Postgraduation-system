@@ -14,11 +14,11 @@ class StudyType extends Model
 
     public function registrations()
     {
-        return $this->hasMany(Registration::calss, 'idStudyTypeF', 'idStudyType');
+        return $this->hasMany(Registration::class, 'idStudyTypeF', 'idStudyType');
     }
 
     public function courses()
     {
-        return $this->hasMany(Course::calss, 'idStudyTypeF', 'idStudyType');
+        return $this->hasMany(Course::class, 'idStudyTypeF', 'idStudyType');
     }
 }
