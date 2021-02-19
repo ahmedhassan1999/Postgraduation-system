@@ -19,5 +19,14 @@ use App\Http\Controllers\SendController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//to enter the student name, email, and study-type & send an email for him with the form according to his study-type.
 Route::post('addStudentData', [\App\Http\Controllers\StudentController::class, 'addStudentData']);
+
+//to get the student by his id
+Route::get('/student/{id}', [\App\Http\Controllers\StudentController::class, 'getStudent']);
+
+//update the student by his id
+Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'updateStudent']);
+
+//test
 Route::get('try', [\App\Http\Controllers\StudentController::class, 'try']);
