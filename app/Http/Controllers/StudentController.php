@@ -24,19 +24,20 @@ class StudentController extends Controller
         $student = new Personaldatastudent();
         $student->arabicName = $request->arabicName;
         $student->email = $request->email;
+        $study_type = $request->study_type;
         $student->save();
         $user = DB::table('personaldatastudents')->orderBy('idS', 'desc')->first();
         $user_id = $user->idS;
         $user_name = $user->arabicName;
 
         $name = " ";
-        if ($request->study_type == "دكتوراه الفلسفة في العلوم")
+        if ($study_type == "دكتوراه الفلسفة في العلوم")
             $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMURFUTNSTk5UVlJPOEg5MDNIMEhVU0o1Wi4u";
-        else if ($request->study_type == "دبلومة الدراسات العليا")
+        else if ($study_type == "دبلومة الدراسات العليا")
             $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMDhCQ0ZOWk5CNjNEMEFQNDg2WEo0WjZEQi4u";
-        else if ($request->study_type == "الماجستير في العلوم")
+        else if ($study_type == "الماجستير في العلوم")
             $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUNDNQT0tHNUVFNlJLVDJHMVU4NFo5SjFERi4u";
-        else if ($request->study_type == "تمهيدي الماجستير")
+        else if ($study_type == "تمهيدي الماجستير")
             $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMDhCQ0ZOWk5CNjNEMEFQNDg2WEo0WjZEQi4u";
 
         // $name = "https://forms.gle/xQgRdk2Ra89d6foPA";

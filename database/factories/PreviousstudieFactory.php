@@ -2,17 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Personaldatastudent;
+use App\Models\Previousstudie;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
-class PersonaldatastudentFactory extends Factory
+
+class PreviousstudieFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Personaldatastudent::class;
+    protected $model = Previousstudie::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +24,9 @@ class PersonaldatastudentFactory extends Factory
     public function definition()
     {
         return [
-            'englishName' => $this->faker->name,
-            'arabicName' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'idSF' => 2,
+            'faculty' =>  $this->faker->name,
+
         ];
     }
 }

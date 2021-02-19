@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Previousstudie extends Model
 {
     use HasFactory;
-    protected $table=['previousstudies'];
-    protected $guarded=[];
+    protected $table = 'previousstudies';
+    protected $guarded = [];
     public function personal()
     {
 
-        return $this->hasOne(Personaldatastudent::class,'idSF');
+        return $this->hasOne(Personaldatastudent::class, 'idSF');
     }
-
 }

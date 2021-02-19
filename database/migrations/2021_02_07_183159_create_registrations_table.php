@@ -20,11 +20,11 @@ class CreateRegistrationsTable extends Migration
             $table->string('englishTitle', 100)->nullable();
             $table->string('requiredCourses', 100)->nullable();
             $table->double('toeflGrade')->nullable();
-            $table->date('departmentApprovalDateRegistration')->nullable();
-            $table->date('facultyApprovalDateRegistration')->nullable();
-            $table->date('universitydepartmentApprovalDateRegistration')->nullable();
-            $table->date('committeeytApprovalDateRegistration')->nullable();
-            $table->date('formDate')->nullable();
+            $table->string('departmentApprovalDateRegistration')->nullable();
+            $table->string('facultyApprovalDateRegistration')->nullable();
+            $table->string('universitydepartmentApprovalDateRegistration')->nullable();
+            $table->string('committeeytApprovalDateRegistration')->nullable();
+            $table->string('formDate')->nullable();
             $table->string('currentState', 50)->nullable();
             $table->timestamps();
         });
