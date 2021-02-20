@@ -13,6 +13,6 @@ class Previousstudie extends Model
     public function personal()
     {
 
-        return $this->hasOne(Personaldatastudent::class, 'idSF');
+        return $this->belongsTo(Personaldatastudent::class, 'idSF');
     }
 }

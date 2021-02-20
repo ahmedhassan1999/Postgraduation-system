@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Registration;
+use App\Models\StudyType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RegistrationFactory extends Factory
+class StudyTypeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Registration::class;
+    protected $model = StudyType::class;
 
     /**
      * Define the model's default state.
@@ -22,13 +22,8 @@ class RegistrationFactory extends Factory
     public function definition()
     {
         return [
-            'arabicTitle' => $this->faker->name,
-            'englishTitle' => $this->faker->name,
-            'requiredCourses' => $this->faker->name,
-            'idSF' => '1',
-            'idStudyTypeF' => 2,
-
-
+            'arabicName' => $this->faker->name,
+            'idDeptF' => 1,
         ];
     }
 }

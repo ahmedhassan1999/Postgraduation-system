@@ -32,6 +32,10 @@ class Registration extends Model
     {
         return $this->belongsToMany(Referee::class, 'reports', 'idRegistrationF', 'idRefereedF');
     }
+    public function studytype()
+    {
+        return $this->belongsTo(StudyType::class, 'idStudyTypeF', 'idRegistration');
+    }
 
 
     //every registration may have one excuse or more!
