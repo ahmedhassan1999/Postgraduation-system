@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Previousstudie;
+
 use App\Models\Personaldatastudent;
 
 use App\Mail\StudentMail;
@@ -18,17 +18,6 @@ class StudentController extends Controller
 
        $student=
     }*/
-    public function previousstudy(Request $request, $id)
-    {
-        $prev = new Previousstudie();
-        $prev->idSF = $id;
-        $prev->degree = $request->degree;
-        $prev->faculty = $request->faculty;
-        $prev->university = $request->university;
-        $prev->dateObtained = $request->dateObtained;
-        $prev->specialization = $request->specialization;
-        $prev->save();
-    }
 
     public function addStudentData(Request $request)
     {
