@@ -18,7 +18,7 @@ class CreatePreviousstudiesTable extends Migration
             $table->string('degree', 50);
             $table->string('faculty', 50);
             $table->string('university', 50);
-            $table->date('dateObtained');
+            $table->string('dateObtained', 50);
             $table->string('specialization', 50);
             $table->timestamps();
         });
