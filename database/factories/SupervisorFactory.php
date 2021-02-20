@@ -22,7 +22,7 @@ class SupervisorFactory extends Factory
     public function definition()
     {
         return [
-            'idDegreeF' => 2,
+            'idDegreeF' => 1,
             'department' => $this->faker->name,
         ];
     }
