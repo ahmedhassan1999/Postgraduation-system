@@ -17,7 +17,7 @@ class CreateRegistrationsTable extends Migration
             $table->bigIncrements('idRegistration');
             $table->unsignedBigInteger('idSF');
             $table->string('arabicTitle', 100);
-            $table->string('englishTitle', 100);
+            $table->string('englishTitle', 100)->nullable();
             $table->string('requiredCourses', 100)->nullable();
             $table->double('toeflGrade')->nullable();
             $table->string('departmentApprovalDateRegistration')->nullable();
