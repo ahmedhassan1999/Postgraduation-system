@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Registerationsupervisor extends Model
+class Report extends Model
 {
     use HasFactory;
-    protected $table = 'registerationsupervisors';
+    protected $table = 'reports';
     protected $guarded = [];
+    protected $primaryKey  = 'idReport';
 }

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Personaldatastudent;
+use App\Models\Universityposition;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PersonaldatastudentFactory extends Factory
+class UniversitypositionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Personaldatastudent::class;
+    protected $model = Universityposition::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,7 @@ class PersonaldatastudentFactory extends Factory
     public function definition()
     {
         return [
-            'englishName' => $this->faker->name,
-            'arabicName' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'arabicDegreeName' =>  $this->faker->name,
         ];
     }
 }

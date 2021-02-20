@@ -6,9 +6,10 @@
 <body>
 
 
-<p> welcome  {{$user_name}} we ask you to fill the form and send to us </p>
-<p> the link of the form is {{$name}}   </p>
-<p> and you must use id {{$user_id}}  </p>
+<p>    مرحبا  {{$user_name}}   يجب عليك ملئ الاستمار عن طريق هذا الرابط   </p>
+
+<p style="font-size:14px; color:#0000FF; font-weight:bold; font-style:italic;" >  <b>  {{$name}} </b> </p>
+<p>      {{$user_id}}  ويجب عليك استعمال هذا الرقم الكودى  </p>
 
 </body>
 </html>
