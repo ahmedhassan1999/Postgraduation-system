@@ -17,5 +17,8 @@ class PreviousstudieController extends Controller
         $prev->dateObtained = $request->dateObtained;
         $prev->specialization = $request->specialization;
         $prev->save();
+        return response()->json([
+            $prev
+        ], 201);
     }
 }
