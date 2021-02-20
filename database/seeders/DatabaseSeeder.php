@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Registration;
 use App\Models\Personaldatastudent;
 use App\Models\Supervisor;
+use App\Models\Universityposition;
+use App\Models\Referee;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -28,15 +30,44 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Personaldatastudent::factory()->count(3)->create();
         //\App\Models\Registration::factory()->count(3)->create();
         // this work for one to many
-        $person = Personaldatastudent::factory()
+        $person1 = Personaldatastudent::factory()
             ->has(Registration::factory()->count(3), 'register')
             ->create();
-        // \App\Models\Supervisor::factory()->count(3)->create();
-        /*$user = Registration::factory()
-      ->has(
-        Supervisor::factory()->count(3),'supervisors'
-      )
-      ->create();*/
+        //  \App\Models\Previousstudie::factory()->count(3)->create();
+        $person2 = Universityposition::factory()
+            ->has(Referee::factory()->count(3), 'refrees')
+            ->create();
+        $person3 = Universityposition::factory()
+            ->has(Supervisor::factory()->count(3), 'supervisors')
+            ->create();
+
+        // \App\Models\Universityposition::factory()->count(3)->create();
+
+        // \App\Models\Referee::factory()->count(3)->create();
+        $user1 = Registration::factory()
+            ->has(
+                Supervisor::factory()->count(3),
+                'supervisors'
+            )
+            ->create();
+        $user11 = Supervisor::factory()
+            ->has(
+                Registration::factory()->count(3),
+                'registrions'
+            )
+            ->create();
+        $user2 = Registration::factory()
+            ->has(
+                Referee::factory()->count(3),
+                'refress'
+            )
+            ->create();
+        $user22 = Referee::factory()
+            ->has(
+                Registration::factory()->count(3),
+                'register'
+            )
+            ->create();
 
         //  $this->call(RegistrationTableSeeder::class);
         //$this->call( PersonaldatastudentTableSeeder::class);

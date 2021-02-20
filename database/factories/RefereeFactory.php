@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Personaldatastudent;
+use App\Models\Referee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PersonaldatastudentFactory extends Factory
+class RefereeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Personaldatastudent::class;
+    protected $model = Referee::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +23,7 @@ class PersonaldatastudentFactory extends Factory
     {
         return [
             'englishName' => $this->faker->name,
-            'arabicName' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'idDegreeF' => 1
         ];
     }
 }

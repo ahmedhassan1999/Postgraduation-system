@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Personaldatastudent;
 use App\Models\Excuse;
 use App\Models\Course;
@@ -12,20 +13,25 @@ class Registration extends Model
 {
     use HasFactory;
 
-    protected $table='registrations';
-    protected $guarded=['idRegistration'];
 
-    protected $primaryKey  ='idRegistration';
+    protected $table = 'registrations';
+    protected $guarded = ['idRegistration'];
+
+    protected $primaryKey  = 'idRegistration';
+
     public function personal()
     {
-        return $this->belongsTo(Personaldatastudent::class,'idSF','idRegistration');
+        return $this->belongsTo(Personaldatastudent::class, 'idSF', 'idRegistration');
     }
 
     public function supervisors()
     {
-        return $this->belongsToMany(Supervisor::class,'registerationsupervisors','idRegistrationF','idSupervisorF');
+        return $this->belongsToMany(Supervisor::class, 'registerationsupervisors', 'idRegistrationF', 'idSupervisorF');
     }
-
+    public function refress()
+    {
+        return $this->belongsToMany(Referee::class, 'reports', 'idRegistrationF', 'idRefereedF');
+    }
 
 
     //every registration may have one excuse or more!
