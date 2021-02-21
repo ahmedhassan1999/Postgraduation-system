@@ -26,6 +26,10 @@ class PreviousstudieFactory extends Factory
         return [
             'idSF' => 2,
             'faculty' =>  $this->faker->name,
+            'degree' =>  $this->faker->name,
+            'university' =>  $this->faker->name,
+            'specialization' =>  $this->faker->name,
+            'dateObtained' =>  $this->faker->name,
 
         ];
     }

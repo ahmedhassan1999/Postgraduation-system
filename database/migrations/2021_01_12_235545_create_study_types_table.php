@@ -15,9 +15,9 @@ class CreateStudyTypesTable extends Migration
     {
         Schema::create('studytypes', function (Blueprint $table) {
             $table->id('idStudyType');
-            $table->string('arabicName', 50);
-            $table->string('englishName', 50)->nullable();
-            $table->string('universityCode', 15)->nullable();
+            $table->string('arabicName');
+            $table->string('englishName')->nullable();
+            $table->string('universityCode')->nullable();
             $table->timestamps();
         });
     }

@@ -29,55 +29,55 @@ class DatabaseSeeder extends Seeder
             'requiredCourses' => Str::random(10),
         ]);*/
         //this work for factory
-        \App\Models\Personaldatastudent::factory()->count(3)->create();
-        \App\Models\Previousstudie::factory()->count(3)->create();
-        \App\Models\Department::factory()->count(3)->create();
-        \App\Models\StudyType::factory()->count(3)->create();
-        \App\Models\Registration::factory()->count(3)->create();
+        // \App\Models\Personaldatastudent::factory()->count(1)->create();
+        // \App\Models\Previousstudie::factory()->count(1)->create();
+        \App\Models\Department::factory()->count(1)->create();
+        \App\Models\StudyType::factory()->count(1)->create();
+        // \App\Models\Registration::factory()->count(1)->create();
 
-        \App\Models\Universityposition::factory()->count(3)->create();
-        \App\Models\Referee::factory()->count(3)->create();
-        \App\Models\Supervisor::factory()->count(3)->create();
-        // this work for one to many
-        $person1 = Personaldatastudent::factory()
-            ->has(Registration::factory()->count(3), 'register')
-            ->create();
-        $person111 = Personaldatastudent::factory()
-            ->has(Previousstudie::factory()->count(3), 'prevstudies')
-            ->create();
+        // \App\Models\Universityposition::factory()->count(3)->create();
+        // \App\Models\Referee::factory()->count(3)->create();
+        // \App\Models\Supervisor::factory()->count(3)->create();
+        // // this work for one to many
+        // $person1 = Personaldatastudent::factory()
+        //     ->has(Registration::factory()->count(3), 'register')
+        //     ->create();
+        // $person111 = Personaldatastudent::factory()
+        //     ->has(Previousstudie::factory()->count(3), 'prevstudies')
+        //     ->create();
 
-        $person2 = Universityposition::factory()
-            ->has(Referee::factory()->count(3), 'refrees')
-            ->create();
-        $person3 = Universityposition::factory()
-            ->has(Supervisor::factory()->count(3), 'supervisors')
-            ->create();
+        // $person2 = Universityposition::factory()
+        //     ->has(Referee::factory()->count(3), 'refrees')
+        //     ->create();
+        // $person3 = Universityposition::factory()
+        //     ->has(Supervisor::factory()->count(3), 'supervisors')
+        //     ->create();
 
 
-        $user1 = Registration::factory()
-            ->has(
-                Supervisor::factory()->count(3),
-                'supervisors'
-            )
-            ->create();
-        $user11 = Supervisor::factory()
-            ->has(
-                Registration::factory()->count(3),
-                'registrions'
-            )
-            ->create();
-        $user2 = Registration::factory()
-            ->has(
-                Referee::factory()->count(3),
-                'refress'
-            )
-            ->create();
-        $user22 = Referee::factory()
-            ->has(
-                Registration::factory()->count(3),
-                'register'
-            )
-            ->create();
+        // $user1 = Registration::factory()
+        //     ->has(
+        //         Supervisor::factory()->count(3),
+        //         'supervisors'
+        //     )
+        //     ->create();
+        // $user11 = Supervisor::factory()
+        //     ->has(
+        //         Registration::factory()->count(3),
+        //         'registrions'
+        //     )
+        //     ->create();
+        // $user2 = Registration::factory()
+        //     ->has(
+        //         Referee::factory()->count(3),
+        //         'refress'
+        //     )
+        //     ->create();
+        // $user22 = Referee::factory()
+        //     ->has(
+        //         Registration::factory()->count(3),
+        //         'register'
+        //     )
+        //     ->create();
 
         //  $this->call(RegistrationTableSeeder::class);
         //$this->call( PersonaldatastudentTableSeeder::class);
