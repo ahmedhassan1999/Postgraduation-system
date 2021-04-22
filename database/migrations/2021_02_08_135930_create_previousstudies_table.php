@@ -15,11 +15,11 @@ class CreatePreviousstudiesTable extends Migration
     {
         Schema::create('previousstudies', function (Blueprint $table) {
             $table->unsignedBigInteger('idSF');
-            $table->string('degree', 50)->nullable();
-            $table->string('faculty', 50)->nullable();
-            $table->string('university', 50)->nullable();
-            $table->date('dateObtained')->nullable();
-            $table->string('specialization', 50)->nullable();
+            $table->string('degree');
+            $table->string('faculty');
+            $table->string('university');
+            $table->string('dateObtained');
+            $table->string('specialization');
             $table->timestamps();
         });
     }

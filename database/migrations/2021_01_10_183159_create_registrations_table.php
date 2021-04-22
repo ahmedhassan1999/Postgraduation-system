@@ -16,16 +16,16 @@ class CreateRegistrationsTable extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->bigIncrements('idRegistration');
             $table->unsignedBigInteger('idSF');
-            $table->string('arabicTitle', 100);
-            $table->string('englishTitle', 100);
-            $table->string('requiredCourses', 100)->nullable();
+            $table->string('arabicTitle');
+            $table->string('englishTitle')->nullable();
+            $table->string('requiredCourses')->nullable();
             $table->double('toeflGrade')->nullable();
             $table->string('departmentApprovalDateRegistration')->nullable();
             $table->string('facultyApprovalDateRegistration')->nullable();
             $table->string('universitydepartmentApprovalDateRegistration')->nullable();
             $table->string('committeeytApprovalDateRegistration')->nullable();
             $table->string('formDate')->nullable();
-            $table->string('currentState', 50)->nullable();
+            $table->string('currentState')->nullable();
             $table->timestamps();
         });
     }

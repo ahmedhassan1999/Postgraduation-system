@@ -33,7 +33,7 @@ class StudentController extends Controller
         $user_name = $user->arabicName;
         $name = " ";
         if ($study_type == "دكتوراه الفلسفة في العلوم")
-            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMURFUTNSTk5UVlJPOEg5MDNIMEhVU0o1Wi4u";
+            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUOVJWUkJFNFhRQ0oxODRERFlJQVpZMDkzMC4u";
         else if ($study_type == "دبلومة الدراسات العليا")
             $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMDhCQ0ZOWk5CNjNEMEFQNDg2WEo0WjZEQi4u";
         else if ($study_type == "الماجستير في العلوم")
@@ -69,6 +69,7 @@ class StudentController extends Controller
     {
         if (Personaldatastudent::where('idS', $id)->exists()) {
             $student = Personaldatastudent::find($id);
+            $student->image = is_null($request->image) ? $student->image : $request->image;
             $student->englishName = is_null($request->englishName) ? $student->englishName : $request->englishName;
             $student->arabicName = is_null($request->arabicName) ? $student->arabicName : $request->arabicName;
             $student->birthdateSource = is_null($request->birthdateSource) ? $student->birthdateSource : $request->birthdateSource;

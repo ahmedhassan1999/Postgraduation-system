@@ -22,7 +22,7 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            'arabicName' => $this->faker->name,
+            'arabicName' => 'قسم الرياضيات',
         ];
     }
 }
