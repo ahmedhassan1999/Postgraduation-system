@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Personaldatastudent;
 
 use App\Mail\StudentMail;
@@ -32,7 +33,7 @@ class StudentController extends Controller
         $user_name = $user->arabicName;
         $name = " ";
         if ($study_type == "دكتوراه الفلسفة في العلوم")
-            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMURFUTNSTk5UVlJPOEg5MDNIMEhVU0o1Wi4u";
+            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUOVJWUkJFNFhRQ0oxODRERFlJQVpZMDkzMC4u";
         else if ($study_type == "دبلومة الدراسات العليا")
             $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMDhCQ0ZOWk5CNjNEMEFQNDg2WEo0WjZEQi4u";
         else if ($study_type == "الماجستير في العلوم")
@@ -51,11 +52,12 @@ class StudentController extends Controller
         ], 201);
     }
 
-    public function getStudent($id){
-        if(Personaldatastudent::where('idS', $id)->exists()){
+    public function getStudent($id)
+    {
+        if (Personaldatastudent::where('idS', $id)->exists()) {
             $student = Personaldatastudent::where('idS', $id)->get()->toJson(JSON_PRETTY_PRINT);
             return response($student, 200);
-        }else{
+        } else {
             return response()->json([
                 "message" => "Student not found"
             ], 404);
@@ -63,29 +65,31 @@ class StudentController extends Controller
     }
 
 
-    public function updateStudent(Request $request, $id){
-        if(Personaldatastudent::where('idS', $id)->exists()){
+    public function updateStudent(Request $request, $id)
+    {
+        if (Personaldatastudent::where('idS', $id)->exists()) {
             $student = Personaldatastudent::find($id);
-            $student->englishName = is_null($request->englishName)? $student->englishName : $request->englishName;
-            $student->arabicName = is_null($request->arabicName)? $student->arabicName : $request->arabicName;
-            $student->birthdateSource = is_null($request->birthdateSource)? $student->birthdateSource : $request->birthdateSource;
-            $student->birthdate = is_null($request->birthdate)? $student->birthdate : $request->birthdate;
-            $student->jobArabic = is_null($request->jobArabic)? $student->jobArabic : $request->jobArabic;
-            $student->jobEnglish = is_null($request->jobEnglish)? $student->jobEnglish : $request->jobEnglish;
-            $student->jobAdd = is_null($request->jobAdd)? $student->jobAdd : $request->jobAdd;
-            $student->Add = is_null($request->Add)? $student->Add : $request->Add;
-            $student->religion = is_null($request->religion)? $student->religion : $request->religion;
-            $student->nationality = is_null($request->nationality)? $student->nationality : $request->nationality;
-            $student->email = is_null($request->email)? $student->email : $request->email;
-            $student->mobile = is_null($request->mobile)? $student->mobile : $request->mobile;
-            $student->nationalityId = is_null($request->nationalityId)? $student->nationalityId : $request->nationalityId;
-            $student->gender = is_null($request->gender)? $student->gender : $request->gender;
+            $student->image = is_null($request->image) ? $student->image : $request->image;
+            $student->englishName = is_null($request->englishName) ? $student->englishName : $request->englishName;
+            $student->arabicName = is_null($request->arabicName) ? $student->arabicName : $request->arabicName;
+            $student->birthdateSource = is_null($request->birthdateSource) ? $student->birthdateSource : $request->birthdateSource;
+            $student->birthdate = is_null($request->birthdate) ? $student->birthdate : $request->birthdate;
+            $student->jobArabic = is_null($request->jobArabic) ? $student->jobArabic : $request->jobArabic;
+            $student->jobEnglish = is_null($request->jobEnglish) ? $student->jobEnglish : $request->jobEnglish;
+            $student->jobAdd = is_null($request->jobAdd) ? $student->jobAdd : $request->jobAdd;
+            $student->Add = is_null($request->Add) ? $student->Add : $request->Add;
+            $student->religion = is_null($request->religion) ? $student->religion : $request->religion;
+            $student->nationality = is_null($request->nationality) ? $student->nationality : $request->nationality;
+            $student->email = is_null($request->email) ? $student->email : $request->email;
+            $student->mobile = is_null($request->mobile) ? $student->mobile : $request->mobile;
+            $student->nationalityId = is_null($request->nationalityId) ? $student->nationalityId : $request->nationalityId;
+            $student->gender = is_null($request->gender) ? $student->gender : $request->gender;
             $student->save();
 
             return response()->json([
                 "message" => "records updated successfully"
             ], 201);
-        }else{
+        } else {
             return response()->json([
                 "message" => "Student not found"
             ], 404);
