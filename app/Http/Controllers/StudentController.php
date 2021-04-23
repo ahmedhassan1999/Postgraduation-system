@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-    /*public function try($id)
+    public function tryy()
     {
 
 
-       $student=
-    }*/
+       echo "aaaaaajgf[oikjb[og[jho[h[uj";
+    }
 
     public function addStudentData(Request $request)
     {
