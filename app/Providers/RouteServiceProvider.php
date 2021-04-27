@@ -59,6 +59,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/apis/createRegist.php'));
 
+            //department api route
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/apis/department.php'));
+
 
 
 
