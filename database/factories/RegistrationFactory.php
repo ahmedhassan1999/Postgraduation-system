@@ -25,8 +25,8 @@ class RegistrationFactory extends Factory
             'arabicTitle' => $this->faker->name,
             'englishTitle' => $this->faker->name,
             'requiredCourses' => $this->faker->name,
-            'idSF' => '1',
-            'idStudyTypeF' => 2,
+            'idSF' => '8',
+            'idStudyTypeF' => 3,
 
 
         ];
