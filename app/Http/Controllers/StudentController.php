@@ -7,17 +7,26 @@ use App\Models\Personaldatastudent;
 
 use App\Mail\StudentMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Registration;
+use App\Models\Excuse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
-    /*public function try($id)
+    public function tryy()
     {
 
 
-       $student=
-    }*/
+       echo "aaaaaajgf[oikjb[og[jho[h[uj";
+    }
+    public function delete(Personaldatastudent $personaldatastudent)
+    {
+        $personaldatastudent->delete();
+
+
+    }
 
     public function addStudentData(Request $request)
     {
@@ -95,4 +104,30 @@ class StudentController extends Controller
             ], 404);
         }
     }
+    public function getallstudent()
+    {
+       // return "x";
+        return  Personaldatastudent::whereDate('created_at', '<=', Carbon::now()->subMonth())->whereNull('nationality')->get();;
+    // return Personaldatastudent::all();
+    }
+   /* public function insert(Request $request)
+    {
+        $student = new  Personaldatastudent();
+        $student->image =  $request->image;
+        $student->englishName =  $request->englishName;
+        $student->arabicName = $request->arabicName;
+        $student->birthdateSource =  $request->birthdateSource;
+        $student->birthdate =  $request->birthdate;
+        $student->jobArabic =  $request->jobArabic;
+        $student->jobEnglish =  $request->jobEnglish;
+        $student->jobAdd = $request->jobAdd;
+        $student->Add =  $request->Add;
+        $student->religion = $request->religion;
+        $student->nationality =  $request->nationality;
+        $student->email =  $request->email;
+        $student->mobile =  $request->mobile;
+        $student->nationalityId =  $request->nationalityId;
+        $student->gender =  $request->gender;
+        $student->save();
+    }*/
 }

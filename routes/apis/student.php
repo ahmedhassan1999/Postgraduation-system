@@ -29,4 +29,6 @@ Route::get('/student/{id}', [\App\Http\Controllers\StudentController::class, 'ge
 Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'updateStudent']);
 
 //test
-Route::get('try', [\App\Http\Controllers\StudentController::class, 'try']);
+Route::get('try', [\App\Http\Controllers\StudentController::class, 'tryy']);
+Route::delete('deletestudent/{personaldatastudent}',[\App\Http\Controllers\StudentController::class,'delete']);
+Route::get('getallstudent',[\App\Http\Controllers\StudentController::class,'getallstudent']);

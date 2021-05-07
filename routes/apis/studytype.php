@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\SendController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +18,8 @@ use App\Http\Controllers\SendController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('try',[\App\Http\Controllers\StudentController::class,'tryy']);
 
-
+Route::post('addstudytypeandcourse',[\App\Http\Controllers\StudyTypeController::class,'addstudytype']);
+Route::delete('deletestudytype/{studytype}',[\App\Http\Controllers\StudyTypeController::class,'delete']);
+Route::get('getallstudytype',[App\Http\Controllers\StudyTypeController::class,'getallstudytype']);
+Route::put('update/{id}',[\App\Http\Controllers\StudyTypeController::class,'updatestadytype']);

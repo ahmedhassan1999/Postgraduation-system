@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RefereeController;
 use App\Http\Controllers\SendController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ use App\Http\Controllers\SendController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('try',[\App\Http\Controllers\StudentController::class,'tryy']);
 
-
+Route::post('createrefress',[\App\Http\Controllers\RefereeController::class,'createrefress']);
+Route::put('updaterefress/{id}',[\App\Http\Controllers\RefereeController::class,'update']);
+Route::post('insertnewrefree',[\App\Http\Controllers\RefereeController::class,'insert']);
+Route::delete('delete/{referee}',[\App\Http\Controllers\RefereeController::class,'delete']);

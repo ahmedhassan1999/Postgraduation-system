@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "367bf99ae3c64e1b1a57c6154f60fdcb",
+    "content-hash": "bbc2675cd18f79bd09f5ce0627a0c680",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -662,22 +662,22 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.2.0",
+            "version": "7.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79"
+                "reference": "7008573787b430c1c1f650e3722d9bba59967628"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0aa74dfb41ae110835923ef10a9d803a22d50e79",
-                "reference": "0aa74dfb41ae110835923ef10a9d803a22d50e79",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/7008573787b430c1c1f650e3722d9bba59967628",
+                "reference": "7008573787b430c1c1f650e3722d9bba59967628",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^1.4",
-                "guzzlehttp/psr7": "^1.7",
+                "guzzlehttp/psr7": "^1.7 || ^2.0",
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0"
             },
@@ -685,6 +685,7 @@
                 "psr/http-client-implementation": "1.0"
             },
             "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4.1",
                 "ext-curl": "*",
                 "php-http/client-integration-tests": "^3.0",
                 "phpunit/phpunit": "^8.5.5 || ^9.3.5",
@@ -698,7 +699,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "7.1-dev"
+                    "dev-master": "7.3-dev"
                 }
             },
             "autoload": {
@@ -740,7 +741,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.2.0"
+                "source": "https://github.com/guzzle/guzzle/tree/7.3.0"
             },
             "funding": [
                 {
@@ -760,7 +761,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-10T11:47:56+00:00"
+            "time": "2021-03-23T11:33:13+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1379,6 +1380,55 @@
             "time": "2020-10-18T11:50:25+00:00"
         },
         {
+            "name": "microsoft/microsoft-graph",
+            "version": "1.30.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
+                "reference": "d97a553833e70db714387dd7bfc0f9caa3fa48b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/d97a553833e70db714387dd7bfc0f9caa3fa48b8",
+                "reference": "d97a553833e70db714387dd7bfc0f9caa3fa48b8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.0 || ^7.0",
+                "php": "^8.0 || ^7.3"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.2",
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Beta\\Microsoft\\Graph\\": "src/Beta/Microsoft/Graph/",
+                    "Microsoft\\Graph\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Microsoft Graph Client Tooling",
+                    "email": "graphtooling@service.microsoft.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Microsoft Graph SDK for PHP",
+            "homepage": "https://developer.microsoft.com/en-us/graph",
+            "support": {
+                "issues": "https://github.com/microsoftgraph/msgraph-sdk-php/issues",
+                "source": "https://github.com/microsoftgraph/msgraph-sdk-php/tree/1.30.1"
+            },
+            "time": "2021-04-27T18:48:50+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.2.0",
             "source": {
@@ -1473,6 +1523,55 @@
                 }
             ],
             "time": "2020-12-14T13:15:25+00:00"
+        },
+        {
+            "name": "motze92/office365-mail",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/motze92/office365-mail.git",
+                "reference": "ee134f7570427e483624da1d9f9032cee0598d78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/motze92/office365-mail/zipball/ee134f7570427e483624da1d9f9032cee0598d78",
+                "reference": "ee134f7570427e483624da1d9f9032cee0598d78",
+                "shasum": ""
+            },
+            "require": {
+                "microsoft/microsoft-graph": "^1.5",
+                "php": "^7.1.3 || ^8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Office365Mail\\Office365MailServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Office365Mail\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Moritz Mair",
+                    "homepage": "https://github.com/motze92",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Office365 transport for Laravel",
+            "support": {
+                "issues": "https://github.com/motze92/office365-mail/issues",
+                "source": "https://github.com/motze92/office365-mail/tree/2.0.5"
+            },
+            "time": "2021-03-17T07:54:30+00:00"
         },
         {
             "name": "nesbot/carbon",
