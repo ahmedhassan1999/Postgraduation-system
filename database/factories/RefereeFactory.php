@@ -22,8 +22,8 @@ class RefereeFactory extends Factory
     public function definition()
     {
         return [
-            'englishName' => $this->faker->name,
-            'idDegreeF' => 1
+            'arabicName' => $this->faker->name,
+            'email' => $this->faker->name
         ];
     }
 }

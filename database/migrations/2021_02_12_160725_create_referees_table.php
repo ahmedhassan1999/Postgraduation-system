@@ -15,18 +15,18 @@ class CreateRefereesTable extends Migration
     {
         Schema::create('referees', function (Blueprint $table) {
             $table->bigIncrements('idRefereed');
-            $table->string('arabicName', 50)->nullable();
+            $table->string('arabicName', 50);
             $table->string('englishName', 50)->nullable();
             $table->string('position', 100)->nullable();
             $table->string('university', 50)->nullable();
             $table->string('faculty', 50)->nullable();
             $table->string('department', 50)->nullable();
-            $table->unsignedBigInteger('idDegreeF');
+            $table->unsignedBigInteger('idDegreeF')->nullable();;
             $table->string('nationality', 50)->nullable();
             $table->string('specialization', 50)->nullable();
             $table->string('nationalityId', 15)->nullable();
             $table->string('gender', 5)->nullable();
-            $table->string('email', 100)->nullable();
+            $table->string('email', 100);
             $table->string('mobile', 20)->nullable();
             $table->timestamps();
         });

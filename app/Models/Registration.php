@@ -50,6 +50,8 @@ class Registration extends Model
         return $this->hasMany(Payment::class, 'idRegistrationF', 'idRegistration');
     }
 
+
+
     //every registration may have one remark(state) or more!
     public function states()
     {
@@ -60,5 +62,16 @@ class Registration extends Model
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'results', 'idRegistrationF', 'idCourseF');
+    }
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($registration) {
+             $registration->excuses()->delete();
+             $registration->payments()->delete();
+             $registration->refress()->delete();
+             $registration->states()->delete();
+
+        });
     }
 }
