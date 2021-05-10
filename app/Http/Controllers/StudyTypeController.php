@@ -73,9 +73,9 @@ class StudyTypeController extends Controller
 
              $studyType->arabicName = $request->arabicName;
              $studyType->englishName = $request->englishName;
-            $studyType->universityCode = $request->universityCode;
-            $studyType->type = $request->type;
-         $depart_id=Department::select('idDept')->where('arabicName',$request->depart)->first();
+            $studyType->universityCode = $request->academicCode;
+            $studyType->type = $request->studyType;
+         $depart_id=Department::select('idDept')->where('arabicName',$request->department)->first();
              $studyType->IdDeptF =$depart_id->idDept;
             // $studyType->save();
 

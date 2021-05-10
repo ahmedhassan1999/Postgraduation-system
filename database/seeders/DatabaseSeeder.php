@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
       //   \App\Models\Personaldatastudent::factory()->count(3)->create();
      // \App\Models\Personaldatastudent::factory()->count(3)->create();
         // \App\Models\Previousstudie::factory()->count(1)->create();
-     //   \App\Models\Department::factory()->count(5)->create();
+        \App\Models\Department::factory()->count(3)->create();
        // \App\Models\StudyType::factory()->count(1)->create();
         // \App\Models\Registration::factory()->count(1)->create();
 
