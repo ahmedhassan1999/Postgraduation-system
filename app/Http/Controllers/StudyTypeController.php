@@ -77,13 +77,13 @@ class StudyTypeController extends Controller
             $studyType->type = $request->studyType;
          $depart_id=Department::select('idDept')->where('arabicName',$request->department)->first();
              $studyType->IdDeptF =$depart_id->idDept;
-            // $studyType->save();
+             $studyType->save();
 
           /*   return response()->json([
                 $studyType
             ], 201);*/
 
-            return gettype($request->courses);
+
                $studytype= DB::table('studytypes')->orderBy('idStudyType', 'desc')->first();
                 for($i=0;$i<sizeof($request->courses);$i++)
 
