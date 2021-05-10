@@ -77,38 +77,32 @@ class StudyTypeController extends Controller
             $studyType->type = $request->type;
          $depart_id=Department::select('idDept')->where('arabicName',$request->depart)->first();
              $studyType->IdDeptF =$depart_id->idDept;
-             $studyType->save();
+            // $studyType->save();
+
           /*   return response()->json([
                 $studyType
             ], 201);*/
 
-            if( $request->has('hascourses') ){
-                $studytype= DB::table('studytypes')->orderBy('idStudyType', 'desc')->first();
-               $studytype_id= $studytype->idStudyType;
-               for($i=1;$i<8;$i++){
-                if( empty($request->input('arabicNameSubj'.$i)))
-                break;
-               /* $this->validate($request,
-                [ 'arabicNameSubj'.$i=>'required',
-                'englishNameSubj'.$i=>'required',
-                'codeSubj'.$i=>'required',
-                'maxDegSubj'.$i=>'required',
-                'creditHours'.$i=>'required',
+            return gettype($request->courses);
+               $studytype= DB::table('studytypes')->orderBy('idStudyType', 'desc')->first();
+                for($i=0;$i<sizeof($request->courses);$i++)
 
-                ]);*/
-                $course =  new Course();
-                $course->arabicName  = $request->input('arabicNameSubj'.$i);
-                $course->englishName = $request->input('englishNameSubj'.$i);
-                $course->courseCode = $request->input('codeSubj'.$i);
-                $course->idStudyTypeF =$studytype_id;
-                $course->maxGrade = $request->input('maxDegSubj'.$i);
-                $course->creditHours=$request->input('creditHours'.$i);
-                $course->save();
+                {
+
+                    $course =  new Course();
+                 $course->arabicName  = $request->arNameOfCourse;
+                $course->englishName = $request->enNameOfCourse;
+                $course->courseCode = $request->courseCode;
+                $course->idStudyTypeF =$studytype->idStudyType;
+                $course->maxGrade = $request->maxDegreeOfCourse;
+                $course->creditHours=$request->creditHours;
+                 $course->save();
+
+                }
 
 
-               }
 
-            }
+
 
 
         }
