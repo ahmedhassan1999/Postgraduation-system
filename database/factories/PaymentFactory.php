@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\StudyType;
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StudyTypeFactory extends Factory
+class PaymentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = StudyType::class;
+    protected $model = Payment::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,11 @@ class StudyTypeFactory extends Factory
     public function definition()
     {
         return [
-            'arabicName' => 'دكتوراه الفلسفة في العلوم',
-            'idDeptF' => 5,
-                'type'=>$this->faker->name,
+            'receiptNumber' => '100',
+            'amountPaid' => '100',
+            'URLImage' => $this->faker->name,
+            'paymentDate' => '2021-02-20 13:18:29',
+            'forYear' =>'2021-02-20 13:18:29',
         ];
     }
 }
