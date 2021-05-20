@@ -85,6 +85,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/apis/uncompletedRegist.php'));
 
+            //university position api routes
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/apis/position.php'));
 
 
 
