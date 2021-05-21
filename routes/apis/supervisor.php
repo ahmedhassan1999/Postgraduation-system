@@ -26,4 +26,4 @@ Route::post('/supervisors', [SupervisorController::class, "createSupervisorManua
 Route::put('/supervisors/{id}', [SupervisorController::class, "updateSupervisor"]);
 Route::delete('/supervisors/{id}', [SupervisorController::class, "deleteSupervisor"]);
 Route::get('/get-info', [SupervisorController::class, "getInfo"]);
-Route::get('/search', [SupervisorController::class, "filter"]);
+Route::get('/filter', [SupervisorController::class, "filter"]);
