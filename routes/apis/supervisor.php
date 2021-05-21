@@ -2,9 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\SendController;
-use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\SupervisorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/createSupervisor', [App\Http\Controllers\SupervisorController::class, "createSupervisor"]);
-Route::get('/supervisors', [App\Http\Controllers\SupervisorController::class, "getAllSupervisors"]);
-Route::get('/supervisors/{id}', [App\Http\Controllers\SupervisorController::class, "getSupervisor"]);
-Route::post('/supervisors', [App\Http\Controllers\SupervisorController::class, "createSupervisorManually"]);
-Route::put('/supervisors/{id}', [App\Http\Controllers\SupervisorController::class, "updateSupervisor"]);
-Route::delete('/supervisors/{id}', [App\Http\Controllers\SupervisorController::class, "deleteSupervisor"]);
+Route::post('/createSupervisor', [SupervisorController::class, "createSupervisor"]);
+Route::get('/supervisors', [SupervisorController::class, "getAllSupervisors"]);
+Route::get('/supervisors/{id}', [SupervisorController::class, "getSupervisor"]);
+Route::post('/supervisors', [SupervisorController::class, "createSupervisorManually"]);
+Route::put('/supervisors/{id}', [SupervisorController::class, "updateSupervisor"]);
+Route::delete('/supervisors/{id}', [SupervisorController::class, "deleteSupervisor"]);
+Route::get('/get-info', [SupervisorController::class, "getInfo"]);
+Route::get('/search', [SupervisorController::class, "filter"]);

@@ -42,13 +42,13 @@ class StudentController extends Controller
         $user_name = $user->arabicName;
         $name = " ";
         if ($study_type == "دكتوراه الفلسفة في العلوم")
-            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUOVJWUkJFNFhRQ0oxODRERFlJQVpZMDkzMC4u";
+            $name = "https://forms.office.com/r/n01PLpWM8c";
         else if ($study_type == "دبلومة الدراسات العليا")
-            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMDhCQ0ZOWk5CNjNEMEFQNDg2WEo0WjZEQi4u";
+            $name = "https://forms.office.com/r/Vgt3zxRqAp";
         else if ($study_type == "الماجستير في العلوم")
-            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUNDNQT0tHNUVFNlJLVDJHMVU4NFo5SjFERi4u";
+            $name = "https://forms.office.com/r/5Ntw5TX1FK";
         else if ($study_type == "تمهيدي الماجستير")
-            $name = "https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUMDhCQ0ZOWk5CNjNEMEFQNDg2WEo0WjZEQi4u";
+            $name = "https://forms.office.com/r/ZxrrNeak0p";
 
         // $name = "https://forms.gle/xQgRdk2Ra89d6foPA";
 

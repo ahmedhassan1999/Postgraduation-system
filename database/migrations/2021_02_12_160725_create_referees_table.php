@@ -25,8 +25,8 @@ class CreateRefereesTable extends Migration
             $table->string('nationality', 50)->nullable();
             $table->string('specialization', 50)->nullable();
             $table->string('nationalityId', 15)->nullable();
-            $table->string('gender', 5)->nullable();
-            $table->string('email', 100);
+            $table->string('gender', 10)->nullable();
+            $table->string('email', 100)->nullable();
             $table->string('mobile', 20)->nullable();
             $table->timestamps();
         });

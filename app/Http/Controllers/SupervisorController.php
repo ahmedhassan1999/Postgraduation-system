@@ -21,7 +21,7 @@ class SupervisorController extends Controller
         $supervisor_id = $sv->idSupervisor;
         $supervisor_arabic_name = $sv->arabicName;
         $supervisor_email = $sv->email;
-        $form = " form link";
+        $form = "https://forms.office.com/r/GNT0Dbba9N";
 
         Mail::to($supervisor_email)->send(new SupervisorMail($supervisor_id,  $supervisor_arabic_name, $form));
 
@@ -111,5 +111,41 @@ class SupervisorController extends Controller
                   "message" => "Supervisor not found!"
               ], 404);
           }
+      }
+
+      public function getInfo(){
+        $nationalities =  Supervisor::select('nationality')->distinct()->get()->whereNotNull('nationality')->pluck('nationality')->sort();
+        $universities =  Supervisor::select('university')->distinct()->get()->whereNotNull('university')->pluck('university')->sort();
+        $faculties =  Supervisor::select('faculty')->distinct()->get()->whereNotNull('faculty')->pluck('faculty')->sort();
+        $specializations =  Supervisor::select('specialization')->distinct()->get()->whereNotNull('specialization')->pluck('specialization')->sort();
+
+        return response()->json([
+            "nationalities" => $nationalities,
+            "universities" => $universities,
+            "faculties" => $faculties,
+            "specializations" => $specializations,
+        ], 201);
+      }
+
+      public function filter(Request $request){
+          $sup = Supervisor::query();
+
+          if($request->filled('idDegreeF')){$sup->where('idDegreeF', $request->idDegreeF);}
+
+          if($request->filled('specialization')){$sup->where('specialization', $request->specialization);}
+
+          if($request->filled('department')){$sup->where('department', $request->department);}
+
+          if($request->filled('faculty')){$sup->where('faculty', $request->faculty);}
+
+          if($request->filled('university')){$sup->where('university', $request->university);}
+
+          if($request->filled('nationality')){$sup->where('nationality', $request->nationality);}
+
+          if($request->filled('gender')){$sup->where('gender', $request->gender);}
+
+          return response()->json([
+              "supervisors" => $sup->get()
+          ], 201);
       }
 }
