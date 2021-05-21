@@ -114,10 +114,10 @@ class SupervisorController extends Controller
       }
 
       public function getInfo(){
-        $nationalities =  Supervisor::select('nationality')->distinct()->get()->whereNotNull('nationality')->pluck('nationality')->sort();
-        $universities =  Supervisor::select('university')->distinct()->get()->whereNotNull('university')->pluck('university')->sort();
-        $faculties =  Supervisor::select('faculty')->distinct()->get()->whereNotNull('faculty')->pluck('faculty')->sort();
-        $specializations =  Supervisor::select('specialization')->distinct()->get()->whereNotNull('specialization')->pluck('specialization')->sort();
+        $nationalities =  Supervisor::select('nationality')->distinct()->get()->whereNotNull('nationality')->pluck('nationality');
+        $universities =  Supervisor::select('university')->distinct()->get()->whereNotNull('university')->pluck('university');
+        $faculties =  Supervisor::select('faculty')->distinct()->get()->whereNotNull('faculty')->pluck('faculty');
+        $specializations =  Supervisor::select('specialization')->distinct()->get()->whereNotNull('specialization')->pluck('specialization');
 
         return response()->json([
             "nationalities" => $nationalities,
