@@ -65,37 +65,42 @@ class UncompletedRegistration extends Controller
         $student->gender = is_null($request->gender) ? $student->gender : $request->gender;
         $student->save();
 
-        //creating the registrtiaon for him
-        $regist = new Registration;
-        //the student registration study type
-        $registStudy = StudyType::where('arabicName', $request->study_type)->first();
-        $regist->idSF = $id;
-        $regist->idStudyTypeF = $registStudy->idStudyType;
-        $regist->arabicTitle = $request->arabicTitle;
-        $regist->englishTitle = $request->englishTitle;
-        $regist->requiredCourses = $request->requiredCourses;
-        $regist->toeflGrade = $request->toeflGrade;
-        $regist->departmentApprovalDateRegistration = $request->departmentApprovalDateRegistration;
-        $regist->facultyApprovalDateRegistration = $request->facultyApprovalDateRegistration;
-        $regist->universitydepartmentApprovalDateRegistration = $request->universitydepartmentApprovalDateRegistration;
-        $regist->committeeytApprovalDateRegistration = $request->committeeytApprovalDateRegistration;
-        $regist->formDate = $request->formDate;
-        $regist->currentState = $request->currentState;
+        $regist = new Registration();
+        if($request->thesisData['sciDegree'] == "دبلومة الدراسات العليا" || $request->thesisData['sciDegree'] == "تمهيدي الماجستير"){
+            $registStudy = StudyType::where('arabicName', $request->thesisData['arabicTitle'])
+            ->where('type', $request->thesisData['sciDegree'])
+            ->first();
+        }else if($request->thesisData['sciDegree'] == "الماجستير في العلوم" || $request->thesisData['sciDegree'] == "دكتوراه الفلسفة في العلوم"){
+            $registStudy = StudyType::where('arabicName', $request->thesisData['spec'])
+            ->where('type', $request->thesisData['sciDegree'])
+            ->first();
+        }
+        $user = DB::table('personaldatastudents')->orderBy('idS', 'desc')->first();
+        $user_id = $user->idS;
+        $regist->idSF = $user_id;
+        $regist->idStudyTypeF = $registStudy['idStudyType'];
+        $regist->arabicTitle = $request->thesisData['arabicTitle'];
+        $regist->englishTitle = $request->thesisData['englishTitle'];
+        $regist->requiredCourses = $request->thesisData['requiredCourses'];
+        $regist->toeflGrade = $request->thesisData['toeflGrade'];
         $regist->save();
 
-        //creating the previous studies for him
-        $prev = new Previousstudie();
-        $prev->idSF = $id;
-        $prev->degree = $request->degree;
-        $prev->faculty = $request->faculty;
-        $prev->university = $request->university;
-        $prev->dateObtained = $request->dateObtained;
-        $prev->specialization = $request->specialization;
-        $prev->save();
+
+        $number_of_prev_studies = sizeof($request->uniDegrees);
+        for($i = 0; $i<$number_of_prev_studies; $i++){
+            $prevs = new Previousstudie();
+            $prevs->idSF = $user_id;
+            $prevs->degree = $request->uniDegrees[$i]['degree'];
+            $prevs->faculty = $request->uniDegrees[$i]['faculty'];
+            $prevs->university = $request->uniDegrees[$i]['university'];
+            $prevs->dateObtained = $request->uniDegrees[$i]['dateObtained'];
+            $prevs->specialization = $request->uniDegrees[$i]['specialization'];
+            $prevs->save();
+        }
 
         return response()->json([
-            "message" => "the student is registered successfully!"
-        ], 201);
+            "message" => "record created successfully!"
+        ], 200);
     }
 
     

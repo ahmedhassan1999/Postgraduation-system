@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StudyTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +27,6 @@ Route::put('updatestudytype/{id}',[\App\Http\Controllers\StudyTypeController::cl
 Route::put('updatecourses',[\App\Http\Controllers\StudyTypeController::class,'updatecourses']);
 Route::delete('deletestudytype/{id}',[\App\Http\Controllers\StudyTypeController::class,'deletestudytype']);
 Route::delete('deletecourse/{id}',[\App\Http\Controllers\StudyTypeController::class,'deletecourse']);
+
+//separated study types 
+Route::get('/studytypes', [StudyTypeController::class, 'studies']);

@@ -169,4 +169,18 @@ class StudyTypeController extends Controller
         }
 
     }
+
+    public function studies(){
+        $diploma_studies = Studytype::where('type', 'دبلومة الدراسات العليا')->get();
+        $premaster_studies = Studytype::where('type', 'تمهيدي الماجستير')->get();
+        $master_studies = Studytype::where('type', 'الماجستير في العلوم')->get();
+        $phd_studies = Studytype::where('type', 'دكتوراه الفلسفة في العلوم')->get();
+
+        return response()->json([
+            "diplomas" => $diploma_studies,
+            "pre-masters" => $premaster_studies,
+            "masters" => $master_studies,
+            "phds" => $phd_studies
+        ] ,201);
+    }
 }
