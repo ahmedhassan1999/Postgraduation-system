@@ -24,7 +24,7 @@ class CreateSupervisorsTable extends Migration
             $table->string('nationalityId', 20)->nullable();
             $table->string('nationality', 50)->nullable();
             $table->unsignedBigInteger('idDegreeF');
-            $table->string('gender', 5)->nullable();
+            $table->string('gender', 10)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('mobile', 20)->nullable();
             $table->timestamps();

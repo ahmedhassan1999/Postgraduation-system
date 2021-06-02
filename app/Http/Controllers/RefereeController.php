@@ -21,7 +21,7 @@ class RefereeController extends Controller
         $refree->email=$request->email;
         $refree->save();
         $last_refree = DB::table('referees')->orderBy('idRefereed', 'desc')->first();
-        $form ="https://forms.office.com/Pages/ResponsePage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-kPX0-Y8GNGh3ca7Z_4igRUOVJWUkJFNFhRQ0oxODRERFlJQVpZMDkzMC4u";
+        $form ="https://forms.office.com/r/fZrCTgEihd";
         Mail::to($last_refree->email)->send(new RefressMail($last_refree->arabicName,$form,$last_refree->idRefereed));
         return "done";
     }
@@ -46,7 +46,7 @@ class RefereeController extends Controller
             ], 201);
         } else {
             return response()->json([
-                "message" => "Student not found"
+                "message" => "record not found"
             ], 404);
         }
     }
