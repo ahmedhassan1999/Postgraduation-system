@@ -179,5 +179,11 @@ class SupervisorController extends Controller
           }
 
       }
+      public function deletesupervisorfromregister($id)
+      {
+        session_start();
+        $register=Registration::where('idRegistration',$_SESSION['id_registration'])->first();
+        $register->supervisors()->detach($id);
+      }
 
 }
