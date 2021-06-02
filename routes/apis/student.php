@@ -28,6 +28,18 @@ Route::get('/student/{id}', [\App\Http\Controllers\StudentController::class, 'ge
 //update the student by his id
 Route::put('/student/{id}', [\App\Http\Controllers\StudentController::class, 'updateStudent']);
 
+//for sending email for the already exist student
+Route::post('/sendmail', [StudentController::class, 'sendEmail']);
+
+//our app statistics
+Route::get('/appinfo', [StudentController::class, 'stat']);
+
+//insert student manually from scratch
+Route::post('/insert-student', [StudentController::class, 'insertStudentManually']);
+
+//uncompleted students but still valid
+Route::get('/valid-but-uncompleted', [StudentController::class, 'valid']);
+
 //test
 Route::get('try', [\App\Http\Controllers\StudentController::class, 'tryy']);
 Route::delete('deletestudent/{id}',[\App\Http\Controllers\StudentController::class,'delete']);

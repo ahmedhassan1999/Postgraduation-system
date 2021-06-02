@@ -10,6 +10,41 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class StudyTypeController extends Controller
 {
+    public function addcourses($id,Request $request)
+    {
+        for($i=0;$i<sizeof($request->courses);$i++)
+        {
+            $course= new  Course();
+            $course->arabicName =  $request->courses[$i]['arabicName'];
+            $course->englishName =  $request->courses[$i]['englishName'];
+            $course->courseCode =  $request->courses[$i]['courseCode'];
+            $course->maxGrade =  $request->courses[$i]['maxGrade'];
+            $course->creditHours =  $request->courses[$i]['creditHours'];
+            $course->idStudyTypeF=$id;
+            $course->save();
+
+        }
+
+
+    }
+
+    public function updatecourses(Request $request)
+    {
+       for($i=0;$i<sizeof($request->courses);$i++)
+       {
+        if(Course::where('idCourse',$request->courses[$i]['idCourse'])->exists())
+        {
+            $course=Course::find($request->courses[$i]['idCourse']);
+            $course->arabicName = is_null($request->courses[$i]['arabicName']) ? $course->arabicName : $request->courses[$i]['arabicName'];
+            $course->englishName = is_null($request->courses[$i]['englishName']) ? $course->englishName : $request->courses[$i]['englishName'];
+            $course->courseCode = is_null($request->courses[$i]['courseCode']) ? $course->courseCode : $request->courses[$i]['courseCode'];
+            $course->maxGrade = is_null($request->courses[$i]['maxGrade']) ? $course->maxGrade : $request->courses[$i]['maxGrade'];
+            $course->creditHours = is_null($request->courses[$i]['creditHours']) ? $course->creditHours : $request->courses[$i]['creditHours'];
+            $course->save();
+        }
+       }
+
+    }
 
     public function addcourses($id,Request $request)
     {
@@ -96,7 +131,7 @@ class StudyTypeController extends Controller
     {
 
         $courses = Course::where('idStudyTypeF', '=', $id)->get();
-       // return $courses;
+      
 
         if(count($courses)!=0)
         {
@@ -104,23 +139,20 @@ class StudyTypeController extends Controller
              $course->delete();
         }
         StudyType::where('idStudyType',$id)->delete();
-
-
-
-
-
     }
+  
+  
     public function deletecourse($id)
     {
         Course::where('idCourse',$id)->delete();
     }
+   
 
     public function addstudytype(Request $request)
     {
         if($request->isMethod('post'))
         {
 
-          
 
             $studyType =  new Studytype();
 
@@ -129,10 +161,8 @@ class StudyTypeController extends Controller
             $studyType->universityCode = $request->academicCode;
             $studyType->type = $request->studyType;
          $depart_id=Department::select('idDept')->where('arabicName',$request->department)->first();
-             $studyType->IdDeptF =$depart_id->idDept;
 
              $studyType->save();
-
                $studytype= DB::table('studytypes')->orderBy('idStudyType', 'desc')->first();
                 for($i=0;$i<sizeof($request->courses);$i++)
 
@@ -149,17 +179,22 @@ class StudyTypeController extends Controller
                    $course->creditHours =$request->courses[$i]['creditHours'];
                    $course->save();
 
-
-
-
                 }
-
-
-
-
-
-
         }
 
+    }
+
+    public function studies(){
+        $diploma_studies = Studytype::where('type', 'دبلومة الدراسات العليا')->get();
+        $premaster_studies = Studytype::where('type', 'تمهيدي الماجستير')->get();
+        $master_studies = Studytype::where('type', 'الماجستير في العلوم')->get();
+        $phd_studies = Studytype::where('type', 'دكتوراه الفلسفة في العلوم')->get();
+
+        return response()->json([
+            "diplomas" => $diploma_studies,
+            "pre-masters" => $premaster_studies,
+            "masters" => $master_studies,
+            "phds" => $phd_studies
+        ] ,201);
     }
 }
