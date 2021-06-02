@@ -30,3 +30,4 @@ Route::post('insertnewrefree',[\App\Http\Controllers\RefereeController::class,'i
 Route::delete('delete/{referee}',[\App\Http\Controllers\RefereeController::class,'delete']);
 Route::get('getdistinct', [\App\Http\Controllers\RefereeController::class, 'get']);
 Route::post('/filterRef', [\App\Http\Controllers\RefereeController::class, "filter"]);
+Route::delete('deleterefreefromregister/{id}',[\App\Http\Controllers\RefereeController::class, 'deleterefreefromregister']);
