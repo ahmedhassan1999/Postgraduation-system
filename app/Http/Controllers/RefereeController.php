@@ -7,6 +7,7 @@ use App\Models\Referee;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RefressMail;
+use App\Models\Registration;
 
 class RefereeController extends Controller
 {
@@ -125,5 +126,11 @@ class RefereeController extends Controller
           return response()->json([
               "referees" => $sup->get()
           ], 201);
+      }
+      public function deleterefreefromregister($id)
+      {
+        session_start();
+        $register=Registration::where('idRegistration',$_SESSION['id_registration'])->first();
+        $register->refress()->detach($id);
       }
 }
