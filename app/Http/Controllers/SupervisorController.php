@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Supervisor;
+use App\Models\Registration;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Mail\SupervisorMail;
@@ -38,7 +39,7 @@ class SupervisorController extends Controller
         $supervisors = Supervisor::get()->toJson(JSON_PRETTY_PRINT);
         return response($supervisors, 201);
       }
-  
+
       public function createSupervisorManually(Request $request) {
           $supervisor = new Supervisor;
           $supervisor->arabicName = $request->arabicName;
@@ -54,12 +55,12 @@ class SupervisorController extends Controller
           $supervisor->email = $request->email;
           $supervisor->mobile = $request->mobile;
           $supervisor->save();
-          
+
           return response()->json([
               "message" => "supervisor created successfully!"
           ], 201);
       }
-  
+
       public function getSupervisor($id) {
           if(Supervisor::where("idSupervisor", $id)->exists()){
               $supervisor = Supervisor::where("idSupervisor", $id)->get()->toJson(JSON_PRETTY_PRINT);
@@ -70,7 +71,7 @@ class SupervisorController extends Controller
               ], 404);
           }
       }
-  
+
       public function updateSupervisor(Request $request, $id) {
           if(Supervisor::where("idSupervisor", $id)->exists()){
               $supervisor = Supervisor::find($id);
@@ -97,7 +98,7 @@ class SupervisorController extends Controller
               ], 404);
           }
       }
-  
+
       public function deleteSupervisor ($id) {
           if(Supervisor::where("idSupervisor", $id)->exists()){
               $supervisor = Supervisor::find($id);
@@ -148,4 +149,35 @@ class SupervisorController extends Controller
               "supervisors" => $sup->get()
           ], 201);
       }
+      public function addsupervisour(Request $request)
+      {
+
+          session_start();
+          for($i=0;$i<sizeof($request->supervisours);$i++)
+          {
+              $supervisour=Supervisor::where('arabicName',$request->supervisours[$i]['arabicName'])->first();
+
+
+              $check=DB::table('registerationsupervisors')
+              ->where('idRegistrationF','=', $_SESSION['id_registration'])
+              ->where('idSupervisorF','=',$supervisour->idSupervisor)->get();
+              $register=Registration::find($_SESSION['id_registration'])->get()->last();
+             // return $register;
+              if(empty($request->supervisours[$i]['cancelationDate']))
+              {
+
+                   $register->supervisors()->attach($supervisour->idSupervisor);
+                   $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['registrationDate' => $request->supervisours[$i]['registrationDate']]);
+
+               }
+               else
+               {
+                  $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
+               }
+
+
+          }
+
+      }
+
 }
