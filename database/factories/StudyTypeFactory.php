@@ -23,7 +23,7 @@ class StudyTypeFactory extends Factory
     {
         return [
             'arabicName' => 'دكتوراه الفلسفة في العلوم',
-            'idDeptF' => 5,
+            'idDeptF' => 1,
                 'type'=>$this->faker->name,
         ];
     }

@@ -71,6 +71,7 @@ class Registration extends Model
              $registration->payments()->delete();
              $registration->refress()->delete();
              $registration->states()->delete();
+             $registration->supervisors()->delete();
 
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use Facade\FlareClient\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('addstudytypeandcourse',[\App\Http\Controllers\StudyTypeController::class,'addstudytype']);
-Route::delete('deletestudytype/{studytype}',[\App\Http\Controllers\StudyTypeController::class,'delete']);
+Route::post('addcourses/{id}',[App\Http\Controllers\StudyTypeController::class,'addcourses']);
 Route::get('getallstudytype',[App\Http\Controllers\StudyTypeController::class,'getallstudytype']);
-Route::put('update/{id}',[\App\Http\Controllers\StudyTypeController::class,'updatestadytype']);
+Route::get('getallcourses/{id}',[App\Http\Controllers\StudyTypeController::class,'getallcourses']);
+Route::put('updatestudytype/{id}',[\App\Http\Controllers\StudyTypeController::class,'updatestadytype']);
+Route::put('updatecourses',[\App\Http\Controllers\StudyTypeController::class,'updatecourses']);
+Route::delete('deletestudytype/{id}',[\App\Http\Controllers\StudyTypeController::class,'deletestudytype']);
+Route::delete('deletecourse/{id}',[\App\Http\Controllers\StudyTypeController::class,'deletecourse']);
+

@@ -18,4 +18,5 @@ class PreviousstudieController extends Controller
         $prev->specialization = $request->specialization;
         $prev->save();
     }
+   
 }

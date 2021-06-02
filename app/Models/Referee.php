@@ -20,14 +20,6 @@ class Referee extends Model
         return $this->belongsTo(Universityposition::class, 'idDegreeF', 'idRefereed');
     }
 
-    public static function boot() {
-        parent::boot();
-
-        static::deleting(function($referee) {
-            $referee->register()->delete();
 
 
-        });
-
-    }
 }
