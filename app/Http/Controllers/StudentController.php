@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Personaldatastudent;
 use App\Models\StudyType;
 use App\Models\Previousstudie;
+use App\Models\Department;
 
 use App\Mail\StudentMail;
 use Illuminate\Support\Facades\Mail;
@@ -222,13 +223,13 @@ class StudentController extends Controller
         $personal->save();
 
         $regist = new Registration();
-        if($request->thesisData['sciDegree'] == "دبلومة الدراسات العليا" || $request->thesisData['sciDegree'] == "تمهيدي الماجستير"){
+        if($request->thesisData['type'] == "دبلومة الدراسات العليا" || $request->thesisData['type'] == "تمهيدي الماجستير"){
             $registStudy = StudyType::where('arabicName', $request->thesisData['arabicTitle'])
-            ->where('type', $request->thesisData['sciDegree'])
+            ->where('type', $request->thesisData['type'])
             ->first();
-        }else if($request->thesisData['sciDegree'] == "الماجستير في العلوم" || $request->thesisData['sciDegree'] == "دكتوراه الفلسفة في العلوم"){
+        }else if($request->thesisData['type'] == "الماجستير في العلوم" || $request->thesisData['type'] == "دكتوراه الفلسفة في العلوم"){
             $registStudy = StudyType::where('arabicName', $request->thesisData['spec'])
-            ->where('type', $request->thesisData['sciDegree'])
+            ->where('type', $request->thesisData['type'])
             ->first();
         }
         $user = DB::table('personaldatastudents')->orderBy('idS', 'desc')->first();
@@ -261,6 +262,26 @@ class StudentController extends Controller
 
     public function valid(){
         $st = Personaldatastudent::whereNull('englishName')->whereDate('created_at', '>', Carbon::now()->subDays(7))->get()->all();
-        return response()->json($st, 200);
+        $Personal=array();
+        for ($i=0; $i < sizeof($st); $i++) { 
+            $Personal[$i]['personal']= $st[$i];
+        }
+        return response()->json($Personal, 200);
+    }
+
+    public function getInfo(){
+        $nationalities = Personaldatastudent::select('nationality')->distinct()->get()->whereNotNull('nationality')->pluck('nationality');
+        $departments = Department::select('arabicName')->distinct()->get()->whereNotNull('arabicName')->pluck('arabicName');
+        $studies = StudyType::select('arabicName')->distinct()->get()->whereNotNull('arabicName')->pluck('arabicName');
+
+        return response()->json([
+            "nationalities" => $nationalities,
+            "departments" => $departments,
+            "studies" => $studies
+        ], 201);
+    }
+
+    public function viewFilter(Request $request){
+        
     }
 }

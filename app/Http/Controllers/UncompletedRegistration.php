@@ -20,8 +20,12 @@ class UncompletedRegistration extends Controller
 {
     public function getAllStudents(){
         $st = Personaldatastudent::whereNull('englishName')->whereDate('created_at', '<=', Carbon::now()->subDays(7))->get()->all();
+        $Personal=array();
+        for ($i=0; $i < sizeof($st); $i++) { 
+            $Personal[$i]['personal']= $st[$i];
+        }
         // return Carbon::now()->subDays(7);
-        return response()->json($st, 201);
+        return response()->json($Personal, 201);
     }
 
     public function sendEmail(Request $request){

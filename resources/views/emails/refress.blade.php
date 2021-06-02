@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <p>     مرحبا دكتور  {{$name}}   برجاء  ملئ الاستمار عن طريق هذا الرابط   </p>
+    <p>     مرحبا دكتور  {{$name}}   برجاء  ملأ الاستمارة عن طريق هذا الرابط   </p>
 
     <p style="font-size:14px; color:#0000FF; font-weight:bold; font-style:italic;" >  <b>  {{$form}} </b> </p>
     <p>      ويجب عليك استعمال هذا الرقم الكودى  {{$id}}  </p>

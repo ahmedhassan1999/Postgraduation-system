@@ -40,6 +40,12 @@ Route::post('/insert-student', [StudentController::class, 'insertStudentManually
 //uncompleted students but still valid
 Route::get('/valid-but-uncompleted', [StudentController::class, 'valid']);
 
+//distinct info for filter
+Route::get('/view-info', [StudentController::class, 'getInfo']);
+
+//the view filter
+Route::post('/view-filter', [StudentController::class, 'viewFilter']);
+
 //test
 Route::get('try', [\App\Http\Controllers\StudentController::class, 'tryy']);
 Route::delete('deletestudent/{personaldatastudent}',[\App\Http\Controllers\StudentController::class,'delete']);
