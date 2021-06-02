@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SendController;
 use App\Http\Controllers\RegistrationController;
+use App\Models\Registration;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/registrations', [RegistrationController::class, 'createRegistration']);
+Route::get('getstudnt',[RegistrationController::class,'GetALLDate']);
+Route::post('addreferee',[RegistrationController::class,'addreferee']);
+Route::get('get',[RegistrationController::class,'GetALLDate']);
+Route::get('getall',[RegistrationController::class,'getall']);
+Route::get('getrefree',[RegistrationController::class,'searchrefree']);
+Route::put('updatedate',[RegistrationController::class,'updatedate']);
+Route::post('addsupervisour',[RegistrationController::class,'addsupervisour']);
+Route::get('date',[RegistrationController::class,'date']);

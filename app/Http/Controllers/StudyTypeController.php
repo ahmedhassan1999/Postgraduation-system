@@ -46,8 +46,46 @@ class StudyTypeController extends Controller
 
     }
 
+    public function addcourses($id,Request $request)
+    {
+        for($i=0;$i<sizeof($request->courses);$i++)
+        {
+            $course= new  Course();
+            $course->arabicName =  $request->courses[$i]['arNameOfCourse'];
+            $course->englishName =  $request->courses[$i]['enNameOfCourse'];
+            $course->courseCode =  $request->courses[$i]['courseCode'];
+            $course->maxGrade =  $request->courses[$i]['maxDegreeOfCourse'];
+            $course->creditHours =  $request->courses[$i]['creditHours'];
+            $course->idStudyTypeF=$id;
+            $course->save();
+
+        }
+
+
+    }
+    public function updatecourses(Request $request)
+    {
+       for($i=0;$i<sizeof($request->courses);$i++)
+       {
+        if(Course::where('idCourse',$request->courses[$i]['idCourse'])->exists())
+        {
+            $course=Course::find($request->courses[$i]['idCourse']);
+            $course->arabicName = is_null($request->courses[$i]['arNameOfCourse']) ? $course->arabicName : $request->courses[$i]['arNameOfCourse'];
+            $course->englishName = is_null($request->courses[$i]['enNameOfCourse']) ? $course->englishName : $request->courses[$i]['enNameOfCourse'];
+            $course->courseCode = is_null($request->courses[$i]['courseCode']) ? $course->courseCode : $request->courses[$i]['courseCode'];
+            $course->maxGrade = is_null($request->courses[$i]['maxDegreeOfCourse']) ? $course->maxGrade : $request->courses[$i]['maxDegreeOfCourse'];
+            $course->creditHours = is_null($request->courses[$i]['creditHours']) ? $course->creditHours : $request->courses[$i]['creditHours'];
+            $course->save();
+        }
+
+
+       }
+
+    }
+
     public function updatestadytype(Request $request,$id)
     {
+
         if (Studytype::where('idStudyType', $id)->exists()) {
             $studytype = Studytype::find($id);
             $studytype->arabicName = is_null($request->arabicName) ? $studytype->arabicName : $request->arabicName;
@@ -93,7 +131,7 @@ class StudyTypeController extends Controller
     {
 
         $courses = Course::where('idStudyTypeF', '=', $id)->get();
-       // return $courses;
+      
 
         if(count($courses)!=0)
         {
@@ -101,27 +139,20 @@ class StudyTypeController extends Controller
              $course->delete();
         }
         StudyType::where('idStudyType',$id)->delete();
-
-
-
-
-
     }
+  
+  
     public function deletecourse($id)
     {
         Course::where('idCourse',$id)->delete();
     }
+   
 
     public function addstudytype(Request $request)
     {
         if($request->isMethod('post'))
         {
 
-          /*  $this->validate($request,
-                                [ 'arabicName'=>'required|unique:Studytypes',
-                                  'englishName'=>'required|unique:Studytypes',
-                                  'universityCode'=>'unique:Studytypes',
-                                ]);*/
 
             $studyType =  new Studytype();
 
@@ -130,16 +161,8 @@ class StudyTypeController extends Controller
             $studyType->universityCode = $request->academicCode;
             $studyType->type = $request->studyType;
          $depart_id=Department::select('idDept')->where('arabicName',$request->department)->first();
-             $studyType->IdDeptF =$depart_id->idDept;
 
              $studyType->save();
-          //  return sizeof($request->courses);
-
-          /*   return response()->json([
-                $studyType
-            ], 201);*/
-
-               // return $request->department;
                $studytype= DB::table('studytypes')->orderBy('idStudyType', 'desc')->first();
                 for($i=0;$i<sizeof($request->courses);$i++)
 
@@ -156,16 +179,7 @@ class StudyTypeController extends Controller
                    $course->creditHours =$request->courses[$i]['creditHours'];
                    $course->save();
 
-
-
-
                 }
-
-
-
-
-
-
         }
 
     }
