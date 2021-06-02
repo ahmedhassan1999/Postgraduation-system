@@ -21,4 +21,5 @@ class PreviousstudieController extends Controller
             $prev
         ], 201);
     }
+   
 }
