@@ -125,64 +125,9 @@ class RegistrationController extends Controller
         return response()->json(['previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
 
     }
-    public function addreferee(Request $request)
-    {
-        session_start();
-        for($i=0;$i<sizeof($request->data);$i++)
-        {
-            $refree=Referee::where('arabicName',$request->data[$i]['arabicName'])->first();
 
 
-            $check=DB::table('reports')
-            ->where('idRegistrationF','=', $_SESSION['id_registration'])
-            ->where('idRefereedF','=',$refree->idRefereed)->get();
-            $register=Registration::find($_SESSION['id_registration'])->first();
-            if(empty($request->data[$i]['fileName']))
-            {
-                 $register->refress()->attach($refree->idRefereed);
-
-             }
-             else
-             {
-                $register->refress()->updateExistingPivot($refree->idRefereed,['URLReport' => $request->data[$i]['fileName']->storePublicly('images')]);
-             }
-
-
-        }
-
-    }
-
-    public function addsupervisour(Request $request)
-    {
-
-        session_start();
-        for($i=0;$i<sizeof($request->supervisours);$i++)
-        {
-            $supervisour=Supervisor::where('arabicName',$request->supervisours[$i]['arabicName'])->first();
-
-
-            $check=DB::table('registerationsupervisors')
-            ->where('idRegistrationF','=', $_SESSION['id_registration'])
-            ->where('idSupervisorF','=',$supervisour->idSupervisor)->get();
-            $register=Registration::find($_SESSION['id_registration'])->get()->last();
-           // return $register;
-            if(empty($request->supervisours[$i]['cancelationDate']))
-            {
-
-                 $register->supervisors()->attach($supervisour->idSupervisor);
-                 $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['registrationDate' => $request->supervisours[$i]['registrationDate']]);
-
-             }
-             else
-             {
-                $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
-             }
-
-
-        }
-
-    }
-
+   
 
 
     public function createRegistration(Request $request){
