@@ -42,7 +42,7 @@ class RegistrationController extends Controller
           $Personal_Registration[$i]['personal']=$personals[$i];
           $Personal_Registration[$i]['register']=$register[$i];
           $studyType=StudyType::find($register[$i]->idStudyTypeF)->first();
-          $Personal_Registration[$i]['register']['studyTypeName']=$studyType->arabicName;
+          $Personal_Registration[$i]['register']['spec']=$studyType->arabicName;
           $Personal_Registration[$i]['register']['type']=$studyType->type;
           $depart=Department::find($studyType->idDeptF)->first();
           $Personal_Registration[$i]['register']['departName']=$depart->arabicName;
