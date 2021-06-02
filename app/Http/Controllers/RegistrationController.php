@@ -61,9 +61,12 @@ class RegistrationController extends Controller
     $register->committeeytApprovalDateRegistration = is_null($request->committeeytApprovalDateRegistration) ? $register->committeeytApprovalDateRegistration : $request->committeeytApprovalDateRegistration;
     $register->formDate = is_null($request->formDate) ? $register->departmentApprovalDateRegistration : $request->formDate;
     $register->currentState = is_null($request->currentState) ? $register->currentState : $request->currentState;
+    $register->arabicTitle = is_null($request->arabicTitle) ? $register->arabicTitle : $request->arabicTitle;
+    $register->englishTitle = is_null($request->englishTitle) ? $register->englishTitle : $request->englishTitle;
+    $register->requiredCourses = is_null($request->requiredCourses) ? $register->requiredCourses : $request->requiredCourses;
+    $register->toeflGrade = is_null($request->toeflGrade) ? $register->toeflGrade : $request->toeflGrade;
     $register->save();
-   }
-
+}
 
     public function GetALLDate(Request $request)
     {
@@ -127,7 +130,7 @@ class RegistrationController extends Controller
     }
 
 
-   
+
 
 
     public function createRegistration(Request $request){
