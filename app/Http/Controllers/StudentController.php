@@ -18,15 +18,15 @@ use Carbon\Carbon;
 
 class StudentController extends Controller
 {
-    public function tryy()
-    {
+    public function search(Request $request)
+        {
 
-
-       echo "aaaaaajgf[oikjb[og[jho[h[uj";
-    }
-    public function delete(Personaldatastudent $personaldatastudent)
+            $result=Personaldatastudent::where('arabicName','like', '%'. $request->arabicName .'%')->get();
+            return $result;
+        }
+    public function delete($id)
     {
-        $personaldatastudent->delete();
+        Personaldatastudent::find($id)->delete();
 
 
     }
@@ -107,32 +107,6 @@ class StudentController extends Controller
             ], 404);
         }
     }
-    public function getallstudent()
-    {
-       // return "x";
-        return  Personaldatastudent::whereDate('created_at', '<=', Carbon::now()->subMonth())->whereNull('nationality')->get();;
-    // return Personaldatastudent::all();
-    }
-   /* public function insert(Request $request)
-    {
-        $student = new  Personaldatastudent();
-        $student->image =  $request->image;
-        $student->englishName =  $request->englishName;
-        $student->arabicName = $request->arabicName;
-        $student->birthdateSource =  $request->birthdateSource;
-        $student->birthdate =  $request->birthdate;
-        $student->jobArabic =  $request->jobArabic;
-        $student->jobEnglish =  $request->jobEnglish;
-        $student->jobAdd = $request->jobAdd;
-        $student->Add =  $request->Add;
-        $student->religion = $request->religion;
-        $student->nationality =  $request->nationality;
-        $student->email =  $request->email;
-        $student->mobile =  $request->mobile;
-        $student->nationalityId =  $request->nationalityId;
-        $student->gender =  $request->gender;
-        $student->save();
-    }*/
 
     public function sendEmail(Request $request){
         $study_type = $request->study_type;
@@ -188,7 +162,7 @@ class StudentController extends Controller
                 $premaster_students += 1;
             }
         }
-        
+
 
         return response()->json([
             "students" => $students,
@@ -284,4 +258,5 @@ class StudentController extends Controller
     public function viewFilter(Request $request){
         
     }
+
 }

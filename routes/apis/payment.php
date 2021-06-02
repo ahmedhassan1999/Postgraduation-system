@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SendController;
+use App\Http\Controllers\PaymentController;
+use App\Models\Registration;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,10 @@ use App\Http\Controllers\SendController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('previousstudy/{id}', [\App\Http\Controllers\PreviousstudieController::class, 'previousstudy']);
-Route::put('updatepreviousstudy/{id}',[\App\Http\Controllers\PreviousstudieController::class, 'updatepreviousstudy']);
-Route::delete('deletepreviousstudy/{id}',[\App\Http\Controllers\PreviousstudieController::class, 'deletepreviousstudy']);
+
+
+Route::post('addpayment',[PaymentController::class, 'addpayment']);
+Route::put('updatepayment',[PaymentController::class, 'updatepayment']);
+Route::delete('deletepayment/{id}',[PaymentController::class, 'deletepayment']);
+
+

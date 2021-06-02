@@ -48,5 +48,6 @@ Route::post('/view-filter', [StudentController::class, 'viewFilter']);
 
 //test
 Route::get('try', [\App\Http\Controllers\StudentController::class, 'tryy']);
-Route::delete('deletestudent/{personaldatastudent}',[\App\Http\Controllers\StudentController::class,'delete']);
+Route::delete('deletestudent/{id}',[\App\Http\Controllers\StudentController::class,'delete']);
 Route::get('getallstudent',[\App\Http\Controllers\StudentController::class,'getallstudent']);
+Route::get('searchstudent',[\App\Http\Controllers\StudentController::class,'search']);

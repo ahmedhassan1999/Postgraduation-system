@@ -19,6 +19,7 @@ class RefereeController extends Controller
         $refree=new Referee();
         $refree->arabicName=$request->arabicName;
         $refree->email=$request->email;
+        $refree->idDegreeF=$request->idDegreeF;
         $refree->save();
         $last_refree = DB::table('referees')->orderBy('idRefereed', 'desc')->first();
         $form ="https://forms.office.com/r/fZrCTgEihd";
@@ -38,7 +39,10 @@ class RefereeController extends Controller
             $refree->specialization = is_null($request->specialization) ? $refree->specialization : $request->specialization;
             $refree->nationalityId = is_null($request->nationalityId) ? $refree->nationalityId : $request->nationalityId;
             $refree->gender = is_null($request->gender) ? $refree->gender : $request->gender;
+            $refree->email = is_null($request->email)? $refree->email : $request->email;
             $refree->mobile = is_null($request->mobile) ? $refree->mobile : $request->mobile;
+            $refree->idDegreeF = is_null($request->idDegreeF) ? $refree->idDegreeF : $request->idDegreeF;
+
             $refree->save();
 
             return response()->json([
@@ -65,6 +69,7 @@ class RefereeController extends Controller
         $refree->nationalityId =$request->nationalityId;
         $refree->gender = $request->gender;
         $refree->mobile = $request->mobile;
+        $refree->idDegreeF = $request->idDegreeF;
         $refree->save();
 
     }
@@ -73,4 +78,52 @@ class RefereeController extends Controller
       //  return $referee->arabicName;
         $referee->delete();
     }
+
+    public function get()
+    {
+      $nationalities =  Referee::select('nationality')->distinct()->get()->whereNotNull('nationality')->pluck('nationality');
+        $universities =  Referee::select('university')->distinct()->get()->whereNotNull('university')->pluck('university');
+        $faculties =  Referee::select('faculty')->distinct()->get()->whereNotNull('faculty')->pluck('faculty');
+        $specializations =  Referee::select('specialization')->distinct()->get()->whereNotNull('specialization')->pluck('specialization');
+        $positions =  Referee::select('position')->distinct()->get()->whereNotNull('position')->pluck('position');
+
+
+        return response()->json([
+            "nationalities" => $nationalities,
+            "universities" => $universities,
+            "faculties" => $faculties,
+            "specializations" => $specializations,
+            "positions" => $positions,
+        ], 201);
+    }
+
+    public function getreferees()
+    {
+        $referees = Referee::get()->toJson(JSON_PRETTY_PRINT);
+        return response($referees, 201);
+    }
+
+    public function filter(Request $request){
+          $sup = Referee::query();
+
+          if($request->filled('idDegreeF')){$sup->where('idDegreeF', $request->idDegreeF);}
+
+          if($request->filled('specialization')){$sup->where('specialization', $request->specialization);}
+
+          if($request->filled('department')){$sup->where('department', $request->department);}
+
+          if($request->filled('faculty')){$sup->where('faculty', $request->faculty);}
+
+          if($request->filled('university')){$sup->where('university', $request->university);}
+
+          if($request->filled('nationality')){$sup->where('nationality', $request->nationality);}
+
+          if($request->filled('gender')){$sup->where('gender', $request->gender);}
+
+          if($request->filled('position')){$sup->where('position', $request->position);}
+
+          return response()->json([
+              "referees" => $sup->get()
+          ], 201);
+      }
 }

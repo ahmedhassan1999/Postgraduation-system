@@ -31,16 +31,16 @@ class DatabaseSeeder extends Seeder
             'requiredCourses' => Str::random(10),
         ]);*/
         //this work for factory
-      //   \App\Models\Personaldatastudent::factory()->count(3)->create();
+       // \App\Models\Personaldatastudent::factory()->count(3)->create();
      // \App\Models\Personaldatastudent::factory()->count(3)->create();
         // \App\Models\Previousstudie::factory()->count(1)->create();
-     //   \App\Models\Department::factory()->count(5)->create();
-       // \App\Models\StudyType::factory()->count(1)->create();
+    //    \App\Models\Department::factory()->count(3)->create();
+      //  \App\Models\StudyType::factory()->count(1)->create();
         // \App\Models\Registration::factory()->count(1)->create();
 
         // \App\Models\Universityposition::factory()->count(3)->create();
-        // \App\Models\Referee::factory()->count(3)->create();
-        // \App\Models\Supervisor::factory()->count(3)->create();
+      //   \App\Models\Referee::factory()->count(3)->create();
+        // \App\Models\Supervisor::factory()->count(1)->create();
         // // this work for one to many
         /* $person1 = Personaldatastudent::factory()
              ->has(Registration::factory()->count(3), 'registers')
@@ -75,12 +75,12 @@ class DatabaseSeeder extends Seeder
         //         'registrions'
         //     )
         //     ->create();
-      /*   $user2 = Registration::factory()
+         $user2 = Registration::factory()
             ->has(
                 Referee::factory()->count(3),
                 'refress'
              )
-           ->create();*/
+           ->create();
        /* $user22 = Referee::factory()
              ->has(
                  Registration::factory()->count(3),
