@@ -150,7 +150,7 @@ class RefereeController extends Controller
                }
                else
                {
-                  $register->refress()->updateExistingPivot($request->data[$i]['idRefereed'],['URLReport' => $request->data[$i]['URLReport']->storePublicly('images'),'dateReport' => $request->data[$i]['dateReport']]);
+                  $register->refress()->updateExistingPivot($request->data[$i]['idRefereed'],['dateReport' => $request->data[$i]['dateReport']]);
                }
 
 

@@ -73,8 +73,8 @@ class RegistrationController extends Controller
        $Personal_Registration=Personaldatastudent::where('idS', $request->idS)
         ->join('registrations','personaldatastudents.idS','registrations.idSF')
         ->where('registrations.idStudyTypeF',$request->studyType_id)
-        ->get()
-        ->toArray();
+        ->get();
+        //->toArray();
         $previousstudie=Previousstudie::where('idSF',$Personal_Registration[0]['idS'])->get()->toArray();
         $referee=array();
 
@@ -121,7 +121,7 @@ class RegistrationController extends Controller
 
 
         $excuse=Excuse::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
-        $payment=Payment::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
+        $payment=Payment::where('idRegistrationF',$Personal_Registration[0]->idRegistration)->get()->toArray();
         $state=State::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
         return response()->json(['Personal_Registration'=>$Personal_Registration,'previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
 

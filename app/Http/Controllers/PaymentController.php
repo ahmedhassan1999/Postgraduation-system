@@ -15,7 +15,7 @@ class PaymentController extends Controller
             $payment =new Payment();
             $payment->receiptNumber=$request->payments[$i]['receiptNumber'];
             $payment->amountPaid=$request->payments[$i]['amountPaid'];
-            $payment->URLImage=$request->payments[$i]['URLImage']->storePublicly('images');
+         //   $payment->URLImage=$request->payments[$i]['URLImage']->storePublicly('images');
             $payment->paymentDate=$request->payments[$i]['paymentDate'];
             $payment->forYear=$request->payments[$i]['forYear'];
             $payment-> idRegistrationF =$request->idRegistration;
@@ -29,7 +29,7 @@ class PaymentController extends Controller
         $payment=Payment::where('idPayment',$request->idPayment)->where('idRegistrationF',$request->idRegistration)->first();
         $payment->receiptNumber=is_null($request->receiptNumber) ? $payment->receiptNumber : $request->receiptNumber;
         $payment->amountPaid=is_null($request->amountPaid) ? $payment->amountPaid : $request->amountPaid;
-        $payment->URLImage=is_null($request->URLImage) ? $payment->URLImage : $request->URLImage->storePublicly('images');
+      //  $payment->URLImage=is_null($request->URLImage) ? $payment->URLImage : $request->URLImage->storePublicly('images');
         $payment->paymentDate=is_null($request->paymentDate) ? $payment->paymentDate : $request->paymentDate;
         $payment->forYear=is_null($request->forYear) ? $payment->forYear : $request->forYear;
         $payment->save();
