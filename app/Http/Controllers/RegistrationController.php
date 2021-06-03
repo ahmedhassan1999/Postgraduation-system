@@ -125,7 +125,7 @@ class RegistrationController extends Controller
         $state=State::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
       session_start();
       $_SESSION['id_registration'] = $Personal_Registration[0]['idRegistration'];
-        return response()->json(['previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
+        return response()->json(['Personal_Registration'=>$Personal_Registration,'previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
 
     }
 
@@ -137,7 +137,12 @@ class RegistrationController extends Controller
         $regist = new Registration;
 
         //the student registration study type
-        $registStudy = StudyType::where('arabicName', $request->study_type)->first();
+        if($request->type == "دكتوراه الفلسفة في العلوم" || $request->type == "الماجستير في العلوم"){
+             $registStudy = StudyType::where('arabicName', $request->spec)->first();
+        } else if ($request->type == "تمهيدي الماجستير" || $request->type == "دبلومة الدراسات العليا") {
+
+            $registStudy = StudyType::where('arabicName', $request->arabicTitle)->first();
+        }
 
         $regist->idSF = $request->idS;
         $regist->idStudyTypeF = $registStudy->idStudyType;

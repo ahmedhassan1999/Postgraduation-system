@@ -18,8 +18,7 @@ class PaymentController extends Controller
             $payment->URLImage=$request->payments[$i]['URLImage']->storePublicly('images');
             $payment->paymentDate=$request->payments[$i]['paymentDate'];
             $payment->forYear=$request->payments[$i]['forYear'];
-            session_start();
-            $payment-> idRegistrationF =$_SESSION['id_registration'];
+            $payment-> idRegistrationF =$request->idRegistration;
             $payment->save();
 
 
@@ -27,8 +26,7 @@ class PaymentController extends Controller
     }
     public function updatepayment(Request $request)
     {
-        session_start();
-        $payment=Payment::where('idPayment',$request->idPayment)->where('idRegistrationF',$_SESSION['id_registration'])->first();
+        $payment=Payment::where('idPayment',$request->idPayment)->where('idRegistrationF',$request->idRegistration)->first();
         $payment->receiptNumber=is_null($request->receiptNumber) ? $payment->receiptNumber : $request->receiptNumber;
         $payment->amountPaid=is_null($request->amountPaid) ? $payment->amountPaid : $request->amountPaid;
         $payment->URLImage=is_null($request->URLImage) ? $payment->URLImage : $request->URLImage->storePublicly('images');
