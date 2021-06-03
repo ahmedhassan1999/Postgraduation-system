@@ -14,7 +14,7 @@ class StateController extends Controller
             $state = new State();
             $state->startDate=$request->states[$i]['startDate'];
             $state->status=$request->states[$i]['status'];
-            $state->fileURL=$request->states[$i]['fileURL']->storePublicly('images');
+        //    $state->fileURL=$request->states[$i]['fileURL']->storePublicly('images');
 
             $state-> idRegistrationF =$request->idRegistration;
             $state->save();
