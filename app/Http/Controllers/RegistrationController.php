@@ -61,9 +61,12 @@ class RegistrationController extends Controller
     $register->committeeytApprovalDateRegistration = is_null($request->committeeytApprovalDateRegistration) ? $register->committeeytApprovalDateRegistration : $request->committeeytApprovalDateRegistration;
     $register->formDate = is_null($request->formDate) ? $register->departmentApprovalDateRegistration : $request->formDate;
     $register->currentState = is_null($request->currentState) ? $register->currentState : $request->currentState;
+    $register->arabicTitle = is_null($request->arabicTitle) ? $register->arabicTitle : $request->arabicTitle;
+    $register->englishTitle = is_null($request->englishTitle) ? $register->englishTitle : $request->englishTitle;
+    $register->requiredCourses = is_null($request->requiredCourses) ? $register->requiredCourses : $request->requiredCourses;
+    $register->toeflGrade = is_null($request->toeflGrade) ? $register->toeflGrade : $request->toeflGrade;
     $register->save();
-   }
-
+}
 
     public function GetALLDate(Request $request)
     {
@@ -125,63 +128,8 @@ class RegistrationController extends Controller
         return response()->json(['previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
 
     }
-    public function addreferee(Request $request)
-    {
-        session_start();
-        for($i=0;$i<sizeof($request->data);$i++)
-        {
-            $refree=Referee::where('arabicName',$request->data[$i]['arabicName'])->first();
 
 
-            $check=DB::table('reports')
-            ->where('idRegistrationF','=', $_SESSION['id_registration'])
-            ->where('idRefereedF','=',$refree->idRefereed)->get();
-            $register=Registration::find($_SESSION['id_registration'])->first();
-            if(empty($request->data[$i]['fileName']))
-            {
-                 $register->refress()->attach($refree->idRefereed);
-
-             }
-             else
-             {
-                $register->refress()->updateExistingPivot($refree->idRefereed,['URLReport' => $request->data[$i]['fileName']->storePublicly('images')]);
-             }
-
-
-        }
-
-    }
-
-    public function addsupervisour(Request $request)
-    {
-
-        session_start();
-        for($i=0;$i<sizeof($request->supervisours);$i++)
-        {
-            $supervisour=Supervisor::where('arabicName',$request->supervisours[$i]['arabicName'])->first();
-
-
-            $check=DB::table('registerationsupervisors')
-            ->where('idRegistrationF','=', $_SESSION['id_registration'])
-            ->where('idSupervisorF','=',$supervisour->idSupervisor)->get();
-            $register=Registration::find($_SESSION['id_registration'])->get()->last();
-           // return $register;
-            if(empty($request->supervisours[$i]['cancelationDate']))
-            {
-
-                 $register->supervisors()->attach($supervisour->idSupervisor);
-                 $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['registrationDate' => $request->supervisours[$i]['registrationDate']]);
-
-             }
-             else
-             {
-                $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
-             }
-
-
-        }
-
-    }
 
 
 

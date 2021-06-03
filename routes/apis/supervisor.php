@@ -27,3 +27,5 @@ Route::put('/supervisors/{id}', [SupervisorController::class, "updateSupervisor"
 Route::delete('/supervisors/{id}', [SupervisorController::class, "deleteSupervisor"]);
 Route::get('/get-info', [SupervisorController::class, "getInfo"]);
 Route::post('/filter', [SupervisorController::class, "filter"]);
+Route::post('addsupervisourtoregister',[SupervisorController::class,'addsupervisour']);
+Route::delete('deletesupervisorfromregister/{id}',[SupervisorController::class,'deletesupervisorfromregister']);

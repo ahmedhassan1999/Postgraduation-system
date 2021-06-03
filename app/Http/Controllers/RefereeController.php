@@ -7,6 +7,7 @@ use App\Models\Referee;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RefressMail;
+use App\Models\Registration;
 
 class RefereeController extends Controller
 {
@@ -125,5 +126,37 @@ class RefereeController extends Controller
           return response()->json([
               "referees" => $sup->get()
           ], 201);
+      }
+      public function deleterefreefromregister($id)
+      {
+        session_start();
+        $register=Registration::where('idRegistration',$_SESSION['id_registration'])->first();
+        $register->refress()->detach($id);
+      }
+      public function addreferee(Request $request)
+      {
+          session_start();
+          for($i=0;$i<sizeof($request->data);$i++)
+          {
+              $refree=Referee::where('arabicName',$request->data[$i]['arabicName'])->first();
+
+
+              $check=DB::table('reports')
+              ->where('idRegistrationF','=', $_SESSION['id_registration'])
+              ->where('idRefereedF','=',$refree->idRefereed)->get();
+              $register=Registration::find($_SESSION['id_registration'])->first();
+              if(empty($request->data[$i]['fileName']))
+              {
+                   $register->refress()->attach($refree->idRefereed);
+
+               }
+               else
+               {
+                  $register->refress()->updateExistingPivot($refree->idRefereed,['URLReport' => $request->data[$i]['fileName']->storePublicly('images')]);
+               }
+
+
+          }
+
       }
 }
