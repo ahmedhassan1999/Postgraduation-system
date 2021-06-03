@@ -158,7 +158,7 @@ class SupervisorController extends Controller
               $check=DB::table('registerationsupervisors')
               ->where('idRegistrationF','=', $request->idRegistration)
               ->where('idSupervisorF','=',$request->supervisours[$i]['idSupervisor'])->get();
-              $register=Registration::find($request->idRegistration)->get()->last();
+              $register=Registration::where('idRegistration',$request->idRegistration)->get();
               if(empty($request->supervisours[$i]['cancelationDate']))
               {
 
