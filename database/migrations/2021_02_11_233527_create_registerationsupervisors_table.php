@@ -17,8 +17,8 @@ class CreateRegisterationsupervisorsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('idRegistrationF');
             $table->unsignedBigInteger('idSupervisorF');
-            $table->date('registrationDate')->nullable();
-            $table->date('cancelationDate')->nullable();
+            $table->string('registrationDate',400)->nullable();
+            $table->string('cancelationDate',400)->nullable();
             $table->string('currentState', 50)->nullable();
             $table->integer('stillExist')->nullable();
             $table->timestamps();
