@@ -24,12 +24,21 @@ class StudentController extends Controller
             $result=Personaldatastudent::where('arabicName','like', '%'. $request->arabicName .'%')->get();
             return $result;
         }
-    public function delete($id)
-    {
-        Personaldatastudent::find($id)->delete();
-
-
-    }
+        public function delete($id)
+        {
+            if(Personaldatastudent::where("idS", $id)->exists()){
+                  $student = Personaldatastudent::find($id);
+                  $student->delete();
+    
+                  return response()->json([
+                      "message" => "record deleted!"
+                  ], 202);
+              }else{
+                  return response()->json([
+                      "message" => "student not found!"
+                  ], 404);
+              }
+        }
 
     public function addStudentData(Request $request)
     {

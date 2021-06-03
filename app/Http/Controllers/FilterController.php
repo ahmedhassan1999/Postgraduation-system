@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\Personaldatastudent;
+use App\Models\Registration;
+use App\Models\StudyType;
 
 class FilterController extends Controller
 {
@@ -28,5 +31,19 @@ class FilterController extends Controller
         ], 200);
     }
 
-    //study types filter//
+    //students filter//
+    public function finishedStudents(Request $request){
+        $study = $request->study_type;
+        if($study == "تمهيدي الماجستير"){
+            $studyId = StudyType::where('type', "تمهيدي الماجستير")->get();
+            $regist = Registration::where('currentState', 'finished')->where('idStudyTypeF')
+        }else if($study == "الماجستير في العلوم"){
+
+        }else if($study == "دبلومة الدراسات العليا"){
+
+        }else if($study == "دكتوراه الفلسفة في العلوم"){
+
+        }
+    }
+    
 }

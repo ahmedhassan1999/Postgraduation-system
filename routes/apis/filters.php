@@ -23,3 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //department filter
 Route::post('/departments-filter', [FilterController::class, 'dept']);
 Route::get('/department-info', [FilterController::class, 'getDeptInf']);
+
+//students filter
+Route::post('/finished-students', [FilterController::class, 'finishedStudents']);
