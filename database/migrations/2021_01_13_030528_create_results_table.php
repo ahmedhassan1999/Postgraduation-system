@@ -15,7 +15,7 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id('idResult');
-            $table->date('resultDate')->nullable();
+            $table->string('resultDate',400)->nullable();
             $table->double('degree');
             $table->string('case', 50)->nullable();
             $table->timestamps();

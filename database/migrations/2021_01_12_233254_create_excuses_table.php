@@ -15,8 +15,8 @@ class CreateExcusesTable extends Migration
     {
         Schema::create('excuses', function (Blueprint $table) {
             $table->id('idExcuse');
-            $table->date('excuseDate');
-            $table->date('cancelDate')->nullable();
+            $table->string('excuseDate',400);
+            $table->string('cancelDate',400)->nullable();
             $table->string('submittedDocURL', 400)->nullable();
             $table->string('extendedPeriodDocURL', 400)->nullable();
             $table->integer('numberMonthExtendedPeriod')->unsigned()->nullable();
