@@ -51,9 +51,9 @@ class RegistrationController extends Controller
    }
 
    public function updatedate(Request $request)
-   {     session_start();
+   {
 
-    $register=Registration::find( $_SESSION['id_registration']);
+    $register=Registration::where('idRegistration',$request->idRegistration)->first();
 
     $register->departmentApprovalDateRegistration = is_null($request->departmentApprovalDateRegistration) ? $register->departmentApprovalDateRegistration : $request->departmentApprovalDateRegistration;
     $register->facultyApprovalDateRegistration	 = is_null($request->facultyApprovalDateRegistration	) ? $register->facultyApprovalDateRegistration	 : $request->facultyApprovalDateRegistration;
@@ -123,8 +123,6 @@ class RegistrationController extends Controller
         $excuse=Excuse::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
         $payment=Payment::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
         $state=State::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
-      session_start();
-      $_SESSION['id_registration'] = $Personal_Registration[0]['idRegistration'];
         return response()->json(['Personal_Registration'=>$Personal_Registration,'previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
 
     }
