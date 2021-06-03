@@ -127,32 +127,30 @@ class RefereeController extends Controller
               "referees" => $sup->get()
           ], 201);
       }
-      public function deleterefreefromregister($id)
+      public function deleterefreefromregister(Request $request,$id)
       {
-        session_start();
-        $register=Registration::where('idRegistration',$_SESSION['id_registration'])->first();
+
+        $register=Registration::where('idRegistration',$request->idRegistration)->first();
         $register->refress()->detach($id);
       }
       public function addreferee(Request $request)
       {
-          session_start();
+
           for($i=0;$i<sizeof($request->data);$i++)
           {
-              $refree=Referee::where('arabicName',$request->data[$i]['arabicName'])->first();
-
 
               $check=DB::table('reports')
-              ->where('idRegistrationF','=', $_SESSION['id_registration'])
-              ->where('idRefereedF','=',$refree->idRefereed)->get();
-              $register=Registration::find($_SESSION['id_registration'])->first();
-              if(empty($request->data[$i]['fileName']))
+              ->where('idRegistrationF','=', $request->idRegistration)
+              ->where('idRefereedF','=',$request->data[$i]['idRefereed'])->get();
+              $register=Registration::where('idRegistration',$request->idRegistration)->first();
+              if(empty($request->data[$i]['URLReport']))
               {
-                   $register->refress()->attach($refree->idRefereed);
+                   $register->refress()->attach($request->data[$i]['idRefereed']);
 
                }
                else
                {
-                  $register->refress()->updateExistingPivot($refree->idRefereed,['URLReport' => $request->data[$i]['fileName']->storePublicly('images')]);
+                  $register->refress()->updateExistingPivot($request->data[$i]['idRefereed'],['URLReport' => $request->data[$i]['URLReport']->storePublicly('images'),'dateReport' => $request->data[$i]['dateReport']]);
                }
 
 

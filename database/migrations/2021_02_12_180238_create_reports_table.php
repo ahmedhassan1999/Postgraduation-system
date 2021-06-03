@@ -18,7 +18,7 @@ class CreateReportsTable extends Migration
             $table->unsignedBigInteger('idRefereedF');
             $table->string('URLReport', 400)->nullable();
             $table->string('reportState', 40)->nullable();
-            $table->date('dateReport')->nullable();
+            $table->string('dateReport',400)->nullable();
             $table->bigIncrements('idReport');
             $table->timestamps();
         });

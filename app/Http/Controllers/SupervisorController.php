@@ -152,37 +152,35 @@ class SupervisorController extends Controller
       public function addsupervisour(Request $request)
       {
 
-          session_start();
           for($i=0;$i<sizeof($request->supervisours);$i++)
           {
-              $supervisour=Supervisor::where('arabicName',$request->supervisours[$i]['arabicName'])->first();
 
-
-              $check=DB::table('registerationsupervisors')
-              ->where('idRegistrationF','=', $_SESSION['id_registration'])
-              ->where('idSupervisorF','=',$supervisour->idSupervisor)->get();
-              $register=Registration::find($_SESSION['id_registration'])->get()->last();
-             // return $register;
+          /*    $check=DB::table('registerationsupervisors')
+              ->where('idRegistrationF','=', $request->idRegistration)
+              ->where('idSupervisorF','=',$request->supervisours[$i]['idSupervisor'])->get();*/
+              $register=Registration::where('idRegistration',$request->idRegistration)->first();
               if(empty($request->supervisours[$i]['cancelationDate']))
               {
 
-                   $register->supervisors()->attach($supervisour->idSupervisor);
-                   $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['registrationDate' => $request->supervisours[$i]['registrationDate']]);
+
+                   $register->supervisors()->attach($request->supervisours[$i]['idSupervisor']);
+                   $register->supervisors()->updateExistingPivot($request->supervisours[$i]['idSupervisor'],['registrationDate' => $request->supervisours[$i]['registrationDate'],'currentState' => $request->supervisours[$i]['currentState']]);
 
                }
                else
                {
-                  $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
+
+                  $register->supervisors()->updateExistingPivot($request->supervisours[$i]['idSupervisor'],['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
                }
 
 
           }
 
       }
-      public function deletesupervisorfromregister($id)
+      public function deletesupervisorfromregister(Request $request,  $id)
       {
-        session_start();
-        $register=Registration::where('idRegistration',$_SESSION['id_registration'])->first();
+
+        $register=Registration::where('idRegistration',$request->idRegistration)->first();
         $register->supervisors()->detach($id);
       }
 

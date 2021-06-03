@@ -59,5 +59,5 @@ class FilterController extends Controller
         }
         return response()->json($students, 201);
     }
-    
+
 }

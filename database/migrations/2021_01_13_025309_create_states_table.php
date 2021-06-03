@@ -15,7 +15,7 @@ class CreateStatesTable extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id('idState');
-            $table->date('startDate')->nullable();
+            $table->string('startDate',400)->nullable();
             $table->string('status', 100)->nullable();
             $table->string('fileURL', 400)->nullable();
             $table->timestamps();

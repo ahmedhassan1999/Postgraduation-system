@@ -18,8 +18,8 @@ class CreatePaymentsTable extends Migration
             $table->integer('receiptNumber')->unsigned()->nullable();
             $table->double('amountPaid');
             $table->string('URLImage', 400)->nullable();
-            $table->date('paymentDate');
-            $table->date('forYear');
+            $table->string('paymentDate', 400);
+            $table->string('forYear', 400);
             $table->timestamps();
         });
     }

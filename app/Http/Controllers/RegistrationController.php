@@ -51,9 +51,9 @@ class RegistrationController extends Controller
    }
 
    public function updatedate(Request $request)
-   {     session_start();
+   {
 
-    $register=Registration::find( $_SESSION['id_registration']);
+    $register=Registration::where('idRegistration',$request->idRegistration)->first();
 
     $register->departmentApprovalDateRegistration = is_null($request->departmentApprovalDateRegistration) ? $register->departmentApprovalDateRegistration : $request->departmentApprovalDateRegistration;
     $register->facultyApprovalDateRegistration	 = is_null($request->facultyApprovalDateRegistration	) ? $register->facultyApprovalDateRegistration	 : $request->facultyApprovalDateRegistration;
@@ -123,9 +123,7 @@ class RegistrationController extends Controller
         $excuse=Excuse::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
         $payment=Payment::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
         $state=State::where('idRegistrationF',$Personal_Registration[0]['idRegistration'])->get()->toArray();
-      session_start();
-      $_SESSION['id_registration'] = $Personal_Registration[0]['idRegistration'];
-        return response()->json(['previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
+        return response()->json(['Personal_Registration'=>$Personal_Registration,'previousstudie'=>$previousstudie,'excuse'=>$excuse,'referee'=>$referee,'supervisour'=>$supervisour,'payment'=>$payment,'state'=>$state]);
 
     }
 
@@ -137,7 +135,12 @@ class RegistrationController extends Controller
         $regist = new Registration;
 
         //the student registration study type
-        $registStudy = StudyType::where('arabicName', $request->study_type)->first();
+        if($request->type == "دكتوراه الفلسفة في العلوم" || $request->type == "الماجستير في العلوم"){
+             $registStudy = StudyType::where('arabicName', $request->spec)->first();
+        } else if ($request->type == "تمهيدي الماجستير" || $request->type == "دبلومة الدراسات العليا") {
+
+            $registStudy = StudyType::where('arabicName', $request->arabicTitle)->first();
+        }
 
         $regist->idSF = $request->idS;
         $regist->idStudyTypeF = $registStudy->idStudyType;

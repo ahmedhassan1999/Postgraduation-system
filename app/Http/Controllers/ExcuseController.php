@@ -20,15 +20,14 @@ class ExcuseController extends Controller
             $excuse->extendedPeriodDocURL	= $request->excuses[$i]['extendedPeriodDocURL']->storePublicly('images');
             $excuse->numberMonthExtendedPeriod	= $request->excuses[$i]['numberMonthExtendedPeriod'];
             $excuse->content	= $request->excuses[$i]['content'];
-            session_start();
-            $excuse->idRegistrationF =$_SESSION['id_registration'];
+            $excuse->idRegistrationF =$request->idRegistration;
             $excuse->save();
         }
     }
     public function updateexcuse(Request $request)
     {
-        session_start();
-        $excuse=Excuse::where('idRegistrationF',$_SESSION['id_registration'])->where('idExcuse',$request->idExcuse)->first();
+
+        $excuse=Excuse::where('idRegistrationF',$request->idRegistration)->where('idExcuse',$request->idExcuse)->first();
         $excuse->excuseDate=is_null($request->excuseDate) ? $excuse->excuseDate : $request->excuseDate;
         $excuse->cancelDate=is_null($request->cancelDate) ? $excuse->cancelDate : $request->cancelDate;
         $excuse->submittedDocURL=is_null($request->submittedDocURL) ? $excuse->submittedDocURL : $request->submittedDocURL->storePublicly('images');
