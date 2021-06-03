@@ -152,27 +152,23 @@ class SupervisorController extends Controller
       public function addsupervisour(Request $request)
       {
 
-          session_start();
           for($i=0;$i<sizeof($request->supervisours);$i++)
           {
-              $supervisour=Supervisor::where('arabicName',$request->supervisours[$i]['arabicName'])->first();
-
 
               $check=DB::table('registerationsupervisors')
-              ->where('idRegistrationF','=', $_SESSION['id_registration'])
-              ->where('idSupervisorF','=',$supervisour->idSupervisor)->get();
-              $register=Registration::find($_SESSION['id_registration'])->get()->last();
-             // return $register;
+              ->where('idRegistrationF','=', $request->idRegistration)
+              ->where('idSupervisorF','=',$request->idSupervisor)->get();
+              $register=Registration::find($request->idRegistration)->get()->last();
               if(empty($request->supervisours[$i]['cancelationDate']))
               {
 
-                   $register->supervisors()->attach($supervisour->idSupervisor);
-                   $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['registrationDate' => $request->supervisours[$i]['registrationDate']]);
+                   $register->supervisors()->attach($request->idSupervisor);
+                   $register->supervisors()->updateExistingPivot($request->idSupervisor,['registrationDate' => $request->supervisours[$i]['registrationDate'],'currentState' => $request->supervisours[$i]['currentState']]);
 
                }
                else
                {
-                  $register->supervisors()->updateExistingPivot($supervisour->idSupervisor,['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
+                  $register->supervisors()->updateExistingPivot($request->idSupervisor,['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
                }
 
 
