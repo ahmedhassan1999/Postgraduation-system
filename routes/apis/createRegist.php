@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/registrations', [RegistrationController::class, 'createRegistration']);
-Route::get('getstudnt',[RegistrationController::class,'GetALLDate']);
+Route::post('getstudnt',[RegistrationController::class,'GetALLDate']);
 
 Route::get('get',[RegistrationController::class,'GetALLDate']);
 Route::get('getall',[RegistrationController::class,'getall']);

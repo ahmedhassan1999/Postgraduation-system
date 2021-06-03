@@ -25,20 +25,20 @@ class StudentController extends Controller
             return $result;
         }
         public function delete($id)
-        {
-            if(Personaldatastudent::where("idS", $id)->exists()){
-                  $student = Personaldatastudent::find($id);
-                  $student->delete();
-    
-                  return response()->json([
-                      "message" => "record deleted!"
-                  ], 202);
-              }else{
-                  return response()->json([
-                      "message" => "student not found!"
-                  ], 404);
-              }
-        }
+    {
+        if(Personaldatastudent::where("idS", $id)->exists()){
+              $student = Personaldatastudent::find($id);
+              $student->delete();
+
+              return response()->json([
+                  "message" => "record deleted!"
+              ], 202);
+          }else{
+              return response()->json([
+                  "message" => "student not found!"
+              ], 404);
+          }
+    }
 
     public function addStudentData(Request $request)
     {
@@ -246,7 +246,7 @@ class StudentController extends Controller
     public function valid(){
         $st = Personaldatastudent::whereNull('englishName')->whereDate('created_at', '>', Carbon::now()->subDays(7))->get()->all();
         $Personal=array();
-        for ($i=0; $i < sizeof($st); $i++) { 
+        for ($i=0; $i < sizeof($st); $i++) {
             $Personal[$i]['personal']= $st[$i];
         }
         return response()->json($Personal, 200);
@@ -265,7 +265,7 @@ class StudentController extends Controller
     }
 
     public function viewFilter(Request $request){
-        
+
     }
 
 }

@@ -34,9 +34,12 @@ class FilterController extends Controller
     //students filter//
     public function finishedStudents(Request $request){
         $study = $request->study_type;
+        $ids=array();
         if($study == "تمهيدي الماجستير"){
-            $studyId = StudyType::where('type', "تمهيدي الماجستير")->get();
-            $regist = Registration::where('currentState', 'finished')->where('idStudyTypeF')
+
+            $studies= StudyType::select('idStudyType')->where('type', "تمهيدي الماجستير")->get()->pluck('idStudyType');
+            $regist = Registration::whereIn('idStudyTypeF',  $studies)->where('currentState','finished')->get();
+            
         }else if($study == "الماجستير في العلوم"){
 
         }else if($study == "دبلومة الدراسات العليا"){
@@ -45,5 +48,5 @@ class FilterController extends Controller
 
         }
     }
-    
+
 }
