@@ -157,18 +157,18 @@ class SupervisorController extends Controller
 
               $check=DB::table('registerationsupervisors')
               ->where('idRegistrationF','=', $request->idRegistration)
-              ->where('idSupervisorF','=',$request->idSupervisor)->get();
+              ->where('idSupervisorF','=',$request->supervisours[$i]['idSupervisor'])->get();
               $register=Registration::find($request->idRegistration)->get()->last();
               if(empty($request->supervisours[$i]['cancelationDate']))
               {
 
-                   $register->supervisors()->attach($request->idSupervisor);
-                   $register->supervisors()->updateExistingPivot($request->idSupervisor,['registrationDate' => $request->supervisours[$i]['registrationDate'],'currentState' => $request->supervisours[$i]['currentState']]);
+                   $register->supervisors()->attach($request->supervisours[$i]['idSupervisor']);
+                   $register->supervisors()->updateExistingPivot($request->supervisours[$i]['idSupervisor'],['registrationDate' => $request->supervisours[$i]['registrationDate'],'currentState' => $request->supervisours[$i]['currentState']]);
 
                }
                else
                {
-                  $register->supervisors()->updateExistingPivot($request->idSupervisor,['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
+                  $register->supervisors()->updateExistingPivot($request->supervisours[$i]['idSupervisor'],['cancelationDate' => $request->supervisours[$i]['cancelationDate']]);
                }
 
 
