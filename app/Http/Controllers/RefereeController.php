@@ -129,7 +129,7 @@ class RefereeController extends Controller
       }
       public function deleterefreefromregister(Request $request,$id)
       {
-        session_start();
+        s
         $register=Registration::where('idRegistration',$request->idRegistration)->first();
         $register->refress()->detach($id);
       }
